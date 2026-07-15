@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Datafy Technology | Government Digital Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- React and Lucide Icons -->
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#aaf778",
+                        "on-primary-fixed": "#012104",
+                        "tertiary-fixed": "#cfeace",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-container": "#698d64",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f4f1",
+                        "on-secondary-fixed": "#0a2100",
+                        "on-tertiary-fixed": "#0a200f",
+                        "on-tertiary-fixed-variant": "#354c38",
+                        "primary-fixed": "#c6edbd",
+                        "secondary": "#306c00",
+                        "on-error": "#ffffff",
+                        "outline": "#73796f",
+                        "vibrant-blue": "#0066FF",
+                        "surface-white": "#FFFFFF",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#90da5f",
+                        "tertiary": "#000000",
+                        "surface-tint": "#446741",
+                        "surface-container": "#eeeeec",
+                        "tertiary-container": "#0a200f",
+                        "inverse-surface": "#2f3130",
+                        "primary-fixed-dim": "#aad1a3",
+                        "on-secondary-fixed-variant": "#225100",
+                        "on-secondary-container": "#337200",
+                        "inverse-primary": "#aad1a3",
+                        "on-primary-fixed-variant": "#2d4e2b",
+                        "primary-container": "#012104",
+                        "surface-container-highest": "#e2e3e0",
+                        "background": "#f9f9f7",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "secondary-fixed": "#aaf778",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary": "#ffffff",
+                        "deep-navy": "#0A142F",
+                        "outline-variant": "#c2c8bd",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-tertiary-container": "#718a72",
+                        "on-surface-variant": "#424840",
+                        "on-surface": "#1a1c1b",
+                        "slate-gray": "#4A5568",
+                        "surface-dim": "#dadad8",
+                        "surface-variant": "#e2e3e0",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1a1c1b",
+                        "tertiary-fixed-dim": "#b3cdb3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(208, 235, 207, 0.4), transparent),
+                        radial-gradient(circle at bottom left, rgba(170, 247, 120, 0.1), transparent);
+        }
+        .animate-bounce-subtle {
+            animation: bounceSubtle 3s ease-in-out infinite;
+        }
+        @keyframes bounceSubtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<div id="root"></div>
+<script type="text/babel">
+        const { useState, useEffect } = React;
+        const { 
+            Search, 
+            ArrowForward, 
+            ShieldCheck, 
+            Landmark, 
+            Fingerprint, 
+            Globe, 
+            Building2, 
+            CheckCircle2, 
+            Mail, 
+            Network, 
+            MoveRight, 
+            ArrowUpRight,
+            ArrowRight,
+            Menu,
+            X
+        } = lucide;
+
+        // Custom Icon Component to handle Lucide compatibility in static context
+        const Icon = ({ name, className, size = 24 }) => {
+            const LucideIcon = name;
+            return <LucideIcon className={className} size={size} />;
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <header className={`fixed top-0 w-full z-50 transition-all duration-300 border-b border-outline-variant/20 ${scrolled ? 'h-16 bg-surface/95 backdrop-blur-xl shadow-sm' : 'h-20 bg-surface/80 backdrop-blur-xl'}`}>
+                    <nav className="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+                        <div className="font-headline-md text-headline-md font-bold tracking-tighter text-primary">
+                            Datafy Technology
+                        </div>
+                        <div className="hidden md:flex items-center space-x-8 h-full">
+                            <a className="font-body-md text-body-md tracking-tight text-secondary font-semibold border-b-2 border-secondary h-full flex items-center" href="#">Solutions</a>
+                            <a className="font-body-md text-body-md tracking-tight text-on-surface-variant hover:text-primary transition-colors h-full flex items-center" href="#">Industries</a>
+                            <a className="font-body-md text-body-md tracking-tight text-on-surface-variant hover:text-primary transition-colors h-full flex items-center" href="#">Insights</a>
+                            <a className="font-body-md text-body-md tracking-tight text-on-surface-variant hover:text-primary transition-colors h-full flex items-center" href="#">About</a>
+                        </div>
+                        <div className="flex items-center space-x-6">
+                            <button className="text-on-surface-variant hover:text-primary">
+                                <Search size={20} />
+                            </button>
+                            <button className="bg-primary-container text-on-primary px-6 py-2.5 rounded-lg font-medium hover:opacity-90 active:scale-[0.99] transition-all">
+                                Schedule Consultation
+                            </button>
+                        </div>
+                    </nav>
+                </header>
+            );
+        };
+
+        const Hero = () => (
+            <section className="relative min-h-[921px] flex items-center hero-gradient pt-20 overflow-hidden">
+                <div className="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+                    <div className="lg:col-span-7 space-y-10">
+                        <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/20">
+                            <span className="font-label-sm text-label-sm uppercase text-secondary">Public Sector Excellence</span>
+                        </div>
+                        <h1 className="font-display-lg text-display-lg text-primary leading-[1.1] max-w-3xl">
+                            Powering the Digital Backbone of <span className="text-secondary italic">Sovereign Nations</span>.
+                        </h1>
+                        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                            Datafy supports public institutions with secure, scalable, and resilient digital infrastructure designed for national complexity. From citizen identity to automated tax systems, we bridge the gap between policy and technology.
+                        </p>
+                        <div className="flex flex-wrap gap-4 pt-4">
+                            <button className="bg-primary-container text-on-primary px-8 py-4 rounded-lg font-semibold flex items-center gap-2 group">
+                                Explore e-Gov Solutions
+                                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                            </button>
+                            <button className="border border-outline-variant px-8 py-4 rounded-lg font-semibold text-primary hover:bg-surface-container-low transition-colors">
+                                Security Framework
+                            </button>
+                        </div>
+                        <div className="pt-12 grid grid-cols-3 gap-8 border-t border-outline-variant/30">
+                            <div>
+                                <div className="font-headline-md text-headline-md text-primary">99.9%</div>
+                                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase">Uptime Mandate</div>
+                            </div>
+                            <div>
+                                <div className="font-headline-md text-headline-md text-primary">ISO</div>
+                                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase">27001 Certified</div>
+                            </div>
+                            <div>
+                                <div className="font-headline-md text-headline-md text-primary">15M+</div>
+                                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase">Verified Citizens</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="lg:col-span-5 relative lg:block hidden">
+                        <div className="relative w-full aspect-square bg-surface-container-high rounded-full overflow-hidden shadow-2xl border-4 border-surface-white">
+                            <img 
+                                className="w-full h-full object-cover grayscale-[20%]" 
+                                alt="Command center visualization" 
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQrePIWnjvmVdheiIolexIsv52qy36VgN9X2s7sHeEEmI1gV_BATV0RPYmro1o7_DXpKsw4pR3RUanr8SAzyKNMXbxihJbNjQUHbhtpqEeqGfo-o408Gmgc5GEV7HMFxp5cw80tUADEJIcaYyNRlD31x32laqpVD1EgcZr_F1gRK04W624BzzxujMyKPRYILOsifK_Hm_5kqBBgVHT2MSlsecxlmTZj2koOFs33sBa56lJ370EajsF"
+                            />
+                            <div className="absolute inset-0 bg-secondary/5 mix-blend-overlay"></div>
+                        </div>
+                        <div className="absolute -bottom-8 -left-8 glass-panel p-6 rounded-xl shadow-xl border border-secondary/20 max-w-xs animate-bounce-subtle">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="p-2 bg-secondary/10 rounded-lg text-secondary">
+                                    <ShieldCheck size={20} fill="currentColor" fillOpacity="0.1" />
+                                </div>
+                                <span className="font-headline-sm text-[18px] font-bold text-primary">Encrypted Infrastructure</span>
+                            </div>
+                            <div className="h-2 w-full bg-surface-container-highest rounded-full mb-2">
+                                <div className="h-full w-4/5 bg-secondary rounded-full"></div>
+                            </div>
+                            <p className="text-[12px] text-on-surface-variant">Real-time threat mitigation active across 12 ministry nodes.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const SolutionsGrid = () => (
+            <section className="py-32 px-margin-desktop max-w-container-max mx-auto">
+                <div className="mb-20 space-y-4">
+                    <span className="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Comprehensive Portfolio</span>
+                    <h2 className="font-headline-lg text-headline-lg text-primary max-w-2xl leading-tight">National Scale Systems for <br/>Modern Governance.</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto">
+                    <div className="md:col-span-8 group relative overflow-hidden bg-primary-container rounded-xl p-12 text-on-primary min-h-[450px] flex flex-col justify-end">
+                        <div className="relative z-10 space-y-6">
+                            <span className="font-label-sm text-label-sm text-primary-fixed uppercase tracking-[0.2em]">Core Infrastructure</span>
+                            <h3 className="font-headline-md text-headline-md leading-tight max-w-lg">Unified e-Government Platforms for Seamless Agency Collaboration.</h3>
+                            <p className="text-on-primary/70 max-w-md">Our flagship platform centralizes all ministerial data, allowing for real-time policy impact analysis and inter-departmental resource optimization.</p>
+                            <button className="flex items-center gap-2 font-semibold text-primary-fixed hover:gap-4 transition-all">
+                                View Case Studies <ArrowRight size={20} />
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div className="md:col-span-4 bg-surface-container-low border border-outline-variant/30 rounded-xl p-8 flex flex-col hover:border-secondary/40 transition-colors">
+                        <Landmark className="text-secondary mb-6" size={40} />
+                        <h3 className="font-headline-sm text-[24px] font-bold text-primary mb-4">Tax Management</h3>
+                        <p className="text-on-surface-variant mb-auto">Automated revenue collection and compliance auditing designed for complex national fiscal structures.</p>
+                        <hr className="my-6 border-outline-variant/20"/>
+                        <div className="flex justify-between items-center">
+                            <span className="font-label-sm text-label-sm text-secondary">FIN-TECH</span>
+                            <ArrowUpRight className="text-on-surface-variant" size={20} />
+                        </div>
+                    </div>
+
+                    <div className="md:col-span-4 glass-panel border border-outline-variant/30 rounded-xl p-8 hover:translate-y-[-4px] transition-transform">
+                        <Fingerprint className="text-secondary mb-6" size={40} />
+                        <h3 className="font-headline-sm text-[24px] font-bold text-primary mb-4">Identity Management</h3>
+                        <p className="text-on-surface-variant">Biometric-first digital IDs that serve as the foundation for modern financial inclusion and public services.</p>
+                    </div>
+                    
+                    <div className="md:col-span-4 glass-panel border border-outline-variant/30 rounded-xl p-8 hover:translate-y-[-4px] transition-transform">
+                        <Globe className="text-secondary mb-6" size={40} />
+                        <h3 className="font-headline-sm text-[24px] font-bold text-primary mb-4">Citizen Portals</h3>
+                        <p className="text-on-surface-variant">Mobile-first interfaces that put government services in the hands of millions, increasing accessibility and trust.</p>
+                    </div>
+                    
+                    <div className="md:col-span-4 bg-surface-container-highest/30 border border-outline-variant/30 rounded-xl p-8 hover:translate-y-[-4px] transition-transform">
+                        <Building2 className="text-secondary mb-6" size={40} />
+                        <h3 className="font-headline-sm text-[24px] font-bold text-primary mb-4">Smart City Tech</h3>
+                        <p className="text-on-surface-variant">IoT-driven urban infrastructure for traffic management, utility monitoring, and public safety automation.</p>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const SecuritySection = () => (
+            <section className="bg-primary-container py-32 overflow-hidden relative">
+                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#698d64 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+                <div className="px-margin-desktop max-w-container-max mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div className="space-y-8">
+                        <div className="p-4 inline-block bg-secondary/10 rounded-lg text-secondary border border-secondary/30">
+                            <ShieldCheck size={40} fill="currentColor" fillOpacity="0.2" />
+                        </div>
+                        <h2 className="font-headline-lg text-headline-lg text-on-primary">Uncompromising Security Architecture.</h2>
+                        <p className="font-body-lg text-body-lg text-on-primary/70">
+                            Our sovereign cloud deployments ensure that national data remains under domestic jurisdiction. We employ military-grade encryption and zero-trust protocols across every layer of the digital stack.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                "Sovereign Data Residency Compliance",
+                                "Real-time SOC/SIEM Monitoring",
+                                "Blockchain-verified Audit Trails"
+                            ].map((item, idx) => (
+                                <li key={idx} className="flex items-center gap-4 text-on-primary">
+                                    <CheckCircle2 className="text-secondary" size={24} />
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="relative">
+                        <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10 aspect-video">
+                            <img 
+                                className="w-full h-full object-cover" 
+                                alt="High-tech server room" 
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEvKrGTRL3XqMcbMCHEXidqUpR2dmkmE7pW50GSI4CkAgBBzPHr_TpzZNp_SMEfImzgxRxJ2hWEP82G20tbaUMem4DZbhGaBRQW9qN7uphGsHGpf_As94WUzSgtRVmuuZizPQ0YHQ1FS11hPwyF5cP9ataeCYajICNfuq1TQJLfqUgXuFzYh5Zg4Oe2cKj7n2FUGESxO3R4qjVB78UjZY1W-aVBBTiJDWfePvQFV6PJ0IDYLJZgsUq"
+                            />
+                        </div>
+                        <div className="absolute -top-10 -right-10 w-48 h-48 border-2 border-secondary/20 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const CTA = () => (
+            <section className="py-32 px-margin-desktop max-w-container-max mx-auto text-center">
+                <div className="max-w-3xl mx-auto space-y-10">
+                    <h2 className="font-headline-lg text-headline-lg text-primary">Ready to Transform National Infrastructure?</h2>
+                    <p className="font-body-lg text-body-lg text-on-surface-variant">
+                        Partner with Africa's leading government technology specialists. We provide the expertise and tools required for large-scale institutional modernization.
+                    </p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-6">
+                        <button className="bg-primary-container text-on-primary px-10 py-5 rounded-lg font-bold text-lg hover:shadow-xl transition-all">
+                            Request Strategy Session
+                        </button>
+                        <button className="bg-surface-container-high text-primary px-10 py-5 rounded-lg font-bold text-lg hover:bg-surface-container-highest transition-all">
+                            Download Whitepaper
+                        </button>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="bg-primary-container text-on-primary py-20 border-t border-primary/10">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+                    <div className="md:col-span-1 space-y-6">
+                        <div className="font-headline-md text-headline-md text-on-primary">Datafy.</div>
+                        <p className="text-on-primary-fixed-variant text-sm opacity-80 leading-relaxed">
+                            © 2024 Datafy Technology.<br/>African Excellence, Global Impact.
+                        </p>
+                    </div>
+                    <div className="space-y-6">
+                        <h4 className="font-bold text-on-primary uppercase text-xs tracking-widest">Operations</h4>
+                        <ul className="space-y-4 text-on-primary-fixed-variant">
+                            <li><a className="hover:underline hover:text-on-primary transition-all" href="#">Global Headquarters</a></li>
+                            <li><a className="hover:underline hover:text-on-primary transition-all" href="#">Lagos Hub</a></li>
+                            <li><a className="hover:underline hover:text-on-primary transition-all" href="#">Nairobi Office</a></li>
+                        </ul>
+                    </div>
+                    <div className="space-y-6">
+                        <h4 className="font-bold text-on-primary uppercase text-xs tracking-widest">Mission</h4>
+                        <ul className="space-y-4 text-on-primary-fixed-variant">
+                            <li><a className="hover:underline hover:text-on-primary transition-all" href="#">Sustainability</a></li>
+                            <li><a className="hover:underline hover:text-on-primary transition-all" href="#">Privacy Architecture</a></li>
+                            <li><a className="hover:underline hover:text-on-primary transition-all" href="#">Ethical AI</a></li>
+                        </ul>
+                    </div>
+                    <div className="space-y-6">
+                        <h4 className="font-bold text-on-primary uppercase text-xs tracking-widest">Connect</h4>
+                        <div className="flex gap-4">
+                            <a className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" href="#">
+                                <Mail size={16} />
+                            </a>
+                            <a className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" href="#">
+                                <Network size={16} />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => {
+            useEffect(() => {
+                const observerOptions = { threshold: 0.1 };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('opacity-100', 'translate-y-0');
+                            entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                    observer.observe(section);
+                });
+            }, []);
+
+            return (
+                <div className="min-h-screen">
+                    <Navbar />
+                    <main>
+                        <Hero />
+                        <SolutionsGrid />
+                        <SecuritySection />
+                        <CTA />
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body></html>

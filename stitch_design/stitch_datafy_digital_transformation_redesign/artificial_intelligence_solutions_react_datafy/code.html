@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Solutions | Datafy Technology</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide-react@latest"></script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(1, 33, 4, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #000000 0%, #306c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#aaf778",
+                        "on-primary-fixed": "#012104",
+                        "tertiary-fixed": "#cfeace",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-container": "#698d64",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f4f1",
+                        "on-secondary-fixed": "#0a2100",
+                        "on-tertiary-fixed": "#0a200f",
+                        "on-tertiary-fixed-variant": "#354c38",
+                        "primary-fixed": "#c6edbd",
+                        "secondary": "#306c00",
+                        "on-error": "#ffffff",
+                        "outline": "#73796f",
+                        "vibrant-blue": "#0066FF",
+                        "surface-white": "#FFFFFF",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#90da5f",
+                        "tertiary": "#000000",
+                        "surface-tint": "#446741",
+                        "surface-container": "#eeeeec",
+                        "tertiary-container": "#0a200f",
+                        "inverse-surface": "#2f3130",
+                        "primary-fixed-dim": "#aad1a3",
+                        "on-secondary-fixed-variant": "#225100",
+                        "on-secondary-container": "#337200",
+                        "inverse-primary": "#aad1a3",
+                        "on-primary-fixed-variant": "#2d4e2b",
+                        "primary-container": "#012104",
+                        "surface-container-highest": "#e2e3e0",
+                        "background": "#f9f9f7",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "secondary-fixed": "#aaf778",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary": "#ffffff",
+                        "deep-navy": "#0A142F",
+                        "outline-variant": "#c2c8bd",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-tertiary-container": "#718a72",
+                        "on-surface-variant": "#424840",
+                        "on-surface": "#1a1c1b",
+                        "slate-gray": "#4A5568",
+                        "surface-dim": "#dadad8",
+                        "surface-variant": "#e2e3e0",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1a1c1b",
+                        "tertiary-fixed-dim": "#b3cdb3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container/30">
+<div id="root"></div>
+<script type="text/babel">
+        const { useState, useEffect } = React;
+        const { 
+            Search, 
+            Menu, 
+            X, 
+            BarChart3, 
+            Cpu, 
+            Headphones, 
+            FileText, 
+            Zap, 
+            ArrowForward,
+            ShieldCheck,
+            ChevronRight,
+            ArrowRight
+        } = LucideReact;
+
+        // --- Reusable Components ---
+
+        const Nav = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 20);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-outline-variant/20 shadow-sm transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+                    <div className="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+                        <div className="flex items-center gap-base">
+                            <span className="font-headline-md text-headline-md font-bold tracking-tighter text-primary">Datafy Technology</span>
+                        </div>
+                        
+                        <div className="hidden md:flex items-center gap-10">
+                            {['Solutions', 'Industries', 'Insights', 'About'].map((item) => (
+                                <a key={item} className="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md tracking-tight" href="#">{item}</a>
+                            ))}
+                        </div>
+
+                        <div className="flex items-center gap-6">
+                            <button className="text-on-surface-variant hover:text-primary transition-colors">
+                                <Search size={20} />
+                            </button>
+                            <button className="bg-primary text-on-primary px-6 py-3 rounded-DEFAULT font-body-md hover:opacity-90 transition-all active:scale-[0.98]">
+                                Schedule Consultation
+                            </button>
+                            <button 
+                                className="md:hidden text-on-surface-variant"
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            >
+                                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Mobile Menu Backdrop */}
+                    {isMobileMenuOpen && (
+                        <div className="md:hidden absolute top-full left-0 w-full bg-surface border-b border-outline-variant/20 p-6 flex flex-col gap-4 shadow-xl animate-in fade-in slide-in-from-top-4">
+                            {['Solutions', 'Industries', 'Insights', 'About'].map((item) => (
+                                <a key={item} className="text-on-surface-variant hover:text-primary transition-colors font-body-md text-lg" href="#">{item}</a>
+                            ))}
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="relative overflow-hidden pt-44 pb-40 px-margin-desktop max-w-container-max mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+                    <div className="lg:col-span-7 z-10">
+                        <span className="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-6 block">Intelligence at Scale</span>
+                        <h1 className="font-display-lg text-display-lg mb-8 leading-tight">
+                            Cognitive Solutions for <span className="text-gradient">Enterprise Impact.</span>
+                        </h1>
+                        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12">
+                            Leverage AI to automate repetitive tasks, improve customer experiences, and make smarter business decisions with our bespoke neural frameworks.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                            <button className="bg-primary text-on-primary px-8 py-4 rounded-DEFAULT font-headline-md text-[18px] hover:bg-secondary transition-colors">
+                                Deploy AI Solutions
+                            </button>
+                            <button className="border border-outline-variant px-8 py-4 rounded-DEFAULT font-headline-md text-[18px] hover:bg-surface-container-low transition-colors">
+                                View Case Studies
+                            </button>
+                        </div>
+                    </div>
+                    <div className="lg:col-span-5 relative">
+                        <div className="relative w-full aspect-square bg-surface-container-low rounded-full flex items-center justify-center animate-float">
+                            <div className="glass-card p-8 rounded-xl shadow-xl w-64 absolute -top-4 -right-4 z-20">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <BarChart3 className="text-secondary" size={20} />
+                                    <span className="font-label-sm text-label-sm uppercase">Decision Engine</span>
+                                </div>
+                                <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                                    <div className="bg-secondary h-full w-[85%]"></div>
+                                </div>
+                                <p className="text-[10px] mt-2 text-on-surface-variant">Efficiency Optimization: 85%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const FeatureGrid = () => (
+            <section className="py-24 px-margin-desktop max-w-container-max mx-auto">
+                <div className="mb-20 text-center max-w-3xl mx-auto">
+                    <h2 className="font-headline-lg text-headline-lg mb-6">Our AI Capabilities</h2>
+                    <p className="font-body-md text-body-md text-on-surface-variant">
+                        We bridge the gap between experimental AI and production-ready enterprise technology, focusing on five key transformation pillars.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-gutter h-auto md:h-[800px]">
+                    <div className="md:col-span-2 md:row-span-1 group relative bg-primary-container text-on-primary overflow-hidden rounded-lg p-10 flex flex-col justify-end">
+                        <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Cpu size={120} />
+                        </div>
+                        <div className="z-10">
+                            <span className="font-label-sm text-label-sm uppercase text-secondary-fixed mb-4 block">Process optimization</span>
+                            <h3 className="font-headline-md text-headline-md mb-4">AI Business Automation</h3>
+                            <p className="font-body-md text-body-md text-on-surface-variant/80 max-w-md">
+                                Eliminate operational bottlenecks by deploying intelligent agents that manage complex workflows with 99.9% accuracy.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="md:col-span-1 md:row-span-1 border border-outline-variant/30 rounded-lg p-10 hover:border-secondary transition-all flex flex-col justify-between group">
+                        <Headphones className="text-secondary transition-transform group-hover:scale-110" size={40} />
+                        <div>
+                            <h3 className="font-headline-md text-[24px] mb-3">AI Customer Support</h3>
+                            <p className="font-body-md text-on-surface-variant">Conversational interfaces that resolve issues instantly, anywhere in the world.</p>
+                        </div>
+                    </div>
+
+                    <div className="md:col-span-1 md:row-span-1 bg-surface-container-low rounded-lg p-10 flex flex-col justify-between">
+                        <div>
+                            <FileText className="text-primary mb-6" size={40} />
+                            <h3 className="font-headline-md text-[24px] mb-3">Document Processing</h3>
+                        </div>
+                        <p className="font-body-md text-on-surface-variant">Extract structured insights from millions of unstructured documents in seconds.</p>
+                    </div>
+
+                    <div className="md:col-span-2 md:row-span-1 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                        <div className="border border-outline-variant/30 rounded-lg p-10 hover:bg-surface-bright transition-all flex flex-col justify-between">
+                            <div>
+                                <h3 className="font-headline-md text-[24px] mb-3">Predictive Analytics</h3>
+                                <p className="font-body-md text-on-surface-variant mb-6">Anticipate market shifts and consumer behavior before they happen.</p>
+                            </div>
+                            <div className="flex gap-1 h-12 items-end">
+                                <div className="w-2 bg-secondary/20 h-4"></div>
+                                <div className="w-2 bg-secondary/40 h-8"></div>
+                                <div className="w-2 bg-secondary/60 h-6"></div>
+                                <div className="w-2 bg-secondary h-12"></div>
+                            </div>
+                        </div>
+                        <div className="bg-secondary-container text-on-secondary-container rounded-lg p-10 relative overflow-hidden flex flex-col justify-between">
+                            <div>
+                                <h3 className="font-headline-md text-[24px] mb-3">Generative AI Integration</h3>
+                                <p className="font-body-md opacity-80">Custom LLM training and integration for specialized industry requirements.</p>
+                            </div>
+                            <Zap className="absolute -bottom-4 -right-4 opacity-10" size={96} />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const StrategySection = () => (
+            <section className="py-32 bg-surface-container-low/40">
+                <div className="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div className="relative rounded-xl overflow-hidden shadow-2xl h-[600px]">
+                        <img 
+                            className="w-full h-full object-cover" 
+                            alt="Business executives reviewing data visualizations"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmHQ9c1IuU8JJh1DI-8EgLtC_gPM80_BdAT0aZBMT01Ci6hBUauvYeMDSyqHv5ODA_XrBx32XJgCxIzY0vuo4OiEDQREuupHrbXKomsoPOiTZzeoHlr6UmGwVIuaINQ1r1kvyqh8AMwP6SnIqOXtMixFoJBSvHVuRdOxzoS5cXSilnoKG2kwpLQLKN_Ev-WQZTgGellEafE9dQCzsHC-tqgdb9Be8wJzHf95KxKGdmL-LIrMM1rMYT"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary-container/60 to-transparent"></div>
+                        <div className="absolute bottom-10 left-10 right-10">
+                            <div className="glass-card p-6 rounded-lg">
+                                <p className="font-body-md text-on-primary-fixed italic">"Datafy's strategy wasn't just about the technology; it was about reimagining our entire service model through the lens of intelligence."</p>
+                                <div className="mt-4 border-t border-outline-variant/20 pt-4 flex justify-between items-center">
+                                    <span className="font-label-sm text-label-sm uppercase">Global Head of Digital, FinTech Africa</span>
+                                    <ShieldCheck className="text-secondary" size={20} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span className="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-6 block">The Transformation Journey</span>
+                        <h2 className="font-headline-lg text-headline-lg mb-8 leading-tight">Strategy & <span className="font-normal italic">Consulting</span></h2>
+                        <p className="font-body-md text-body-md text-on-surface-variant mb-12">
+                            We don't just build models; we architect transformation. Our consulting team works with C-suite leaders to define AI roadmaps that align with specific business outcomes, ensuring every investment delivers measurable ROI.
+                        </p>
+                        <div className="space-y-8">
+                            {[
+                                { id: '01', title: 'Feasibility Assessment', desc: 'Rigorous audit of data infrastructure and organizational readiness for AI adoption.' },
+                                { id: '02', title: 'Ethical Governance', desc: 'Developing frameworks for responsible AI usage, data privacy, and bias mitigation.' },
+                                { id: '03', title: 'Change Management', desc: 'Training and cultural alignment to ensure seamless human-AI collaboration.' }
+                            ].map((step) => (
+                                <div key={step.id} className="flex gap-6">
+                                    <div className="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0">
+                                        <span className="font-label-sm text-secondary">{step.id}</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-headline-md text-[20px] mb-2">{step.title}</h4>
+                                        <p className="text-on-surface-variant">{step.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <button className="mt-12 group flex items-center gap-3 font-headline-md text-[18px] text-primary hover:text-secondary transition-colors">
+                            Book a Strategy Session
+                            <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+                        </button>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const StatsSection = () => (
+            <section className="py-24 px-margin-desktop max-w-container-max mx-auto border-y border-outline-variant/10">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
+                    <div className="max-w-xl">
+                        <h2 className="font-headline-lg text-headline-lg mb-6">Real-Time Precision</h2>
+                        <p className="font-body-md text-body-md text-on-surface-variant">
+                            Our models operate at the edge of possibility, delivering sub-second latency and unprecedented precision in high-stakes environments.
+                        </p>
+                    </div>
+                    <div className="flex gap-12">
+                        <div className="text-center">
+                            <div className="font-display-lg text-[64px] text-primary">0.4s</div>
+                            <span className="font-label-sm uppercase tracking-widest text-on-surface-variant">Latency</span>
+                        </div>
+                        <div className="text-center">
+                            <div className="font-display-lg text-[64px] text-secondary">99%</div>
+                            <span className="font-label-sm uppercase tracking-widest text-on-surface-variant">Precision</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="w-full h-[400px] bg-surface-container rounded-xl relative overflow-hidden flex items-center justify-center">
+                    <div className="glass-card px-10 py-8 rounded-full border border-white/20">
+                        <span className="font-label-sm text-label-sm tracking-widest text-primary uppercase">Neural Network Status: Optimized</span>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const CTASection = () => (
+            <section className="py-40 text-center">
+                <div className="px-margin-desktop max-w-3xl mx-auto">
+                    <h2 className="font-display-lg text-display-lg mb-10">Ready to automate the <span className="italic font-normal">impossible?</span></h2>
+                    <p className="font-body-lg text-body-lg text-on-surface-variant mb-12">
+                        Connect with our solution architects to build a custom AI ecosystem for your enterprise.
+                    </p>
+                    <button className="bg-primary-container text-on-primary px-12 py-6 rounded-DEFAULT font-headline-md text-[20px] hover:bg-primary transition-all shadow-xl active:scale-95">
+                        Consult Our Engineers
+                    </button>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="bg-primary-container text-on-primary-fixed full-width py-20 border-t border-primary/10">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+                    <div className="md:col-span-1">
+                        <span className="font-headline-md text-headline-md text-on-primary mb-6 block">Datafy Technology</span>
+                        <p className="font-body-md opacity-60">© 2024 Datafy Technology.<br/>African Excellence, Global Impact.</p>
+                    </div>
+                    <div>
+                        <h5 className="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-8">Global Reach</h5>
+                        <ul className="space-y-4">
+                            {['Global Headquarters', 'Lagos Hub', 'Nairobi Office'].map(link => (
+                                <li key={link}><a className="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">{link}</a></li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 className="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-8">Ethics</h5>
+                        <ul className="space-y-4">
+                            {['Sustainability', 'Privacy Architecture', 'AI Bill of Rights'].map(link => (
+                                <li key={link}><a className="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">{link}</a></li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 className="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-8">Newsletter</h5>
+                        <div className="flex border-b border-outline-variant/30 pb-2">
+                            <input className="bg-transparent border-none focus:ring-0 text-on-primary-fixed placeholder:text-on-primary-fixed/40 w-full outline-none" placeholder="Email address" type="email"/>
+                            <button className="text-on-primary hover:translate-x-1 transition-transform">
+                                <ArrowRight size={20} />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // --- Main App Component ---
+
+        const App = () => {
+            useEffect(() => {
+                const observerOptions = { threshold: 0.1 };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('opacity-100', 'translate-y-0');
+                            entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('section').forEach(section => {
+                    section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+                    observer.observe(section);
+                });
+
+                return () => observer.disconnect();
+            }, []);
+
+            return (
+                <div className="min-h-screen">
+                    <Nav />
+                    <main>
+                        <Hero />
+                        <FeatureGrid />
+                        <StrategySection />
+                        <StatsSection />
+                        <CTASection />
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body></html>

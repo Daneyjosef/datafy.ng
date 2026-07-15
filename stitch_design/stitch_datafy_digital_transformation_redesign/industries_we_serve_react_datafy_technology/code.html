@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Industries | Datafy Technology</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<!-- React and Lucide Icons -->
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide-react@latest"></script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(1, 33, 4, 0.05);
+        }
+        .industry-grid-item:hover .industry-overlay {
+            opacity: 1;
+        }
+        [data-lucide] {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+<!-- Shared Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#aaf778",
+                        "on-primary-fixed": "#012104",
+                        "tertiary-fixed": "#cfeace",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-container": "#698d64",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f4f1",
+                        "on-secondary-fixed": "#0a2100",
+                        "on-tertiary-fixed": "#0a200f",
+                        "on-tertiary-fixed-variant": "#354c38",
+                        "primary-fixed": "#c6edbd",
+                        "secondary": "#306c00",
+                        "on-error": "#ffffff",
+                        "outline": "#73796f",
+                        "vibrant-blue": "#0066FF",
+                        "surface-white": "#FFFFFF",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#90da5f",
+                        "tertiary": "#000000",
+                        "surface-tint": "#446741",
+                        "surface-container": "#eeeeec",
+                        "tertiary-container": "#0a200f",
+                        "inverse-surface": "#2f3130",
+                        "primary-fixed-dim": "#aad1a3",
+                        "on-secondary-fixed-variant": "#225100",
+                        "on-secondary-container": "#337200",
+                        "inverse-primary": "#aad1a3",
+                        "on-primary-fixed-variant": "#2d4e2b",
+                        "primary-container": "#012104",
+                        "surface-container-highest": "#e2e3e0",
+                        "background": "#f9f9f7",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "secondary-fixed": "#aaf778",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary": "#ffffff",
+                        "deep-navy": "#0A142F",
+                        "outline-variant": "#c2c8bd",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-tertiary-container": "#718a72",
+                        "on-surface-variant": "#424840",
+                        "on-surface": "#1a1c1b",
+                        "slate-gray": "#4A5568",
+                        "surface-dim": "#dadad8",
+                        "surface-variant": "#e2e3e0",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1a1c1b",
+                        "tertiary-fixed-dim": "#b3cdb3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<div id="root"></div>
+<script type="text/babel">
+        const { Search, ArrowForward, ChevronRight, TrendingUp, Handshake, VerifiedUser, NorthEast, Share, Hub, ArrowRight, CheckCircle2 } = LucideReact;
+
+        const Navbar = () => (
+            <nav className="bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/20 shadow-sm h-20 flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto">
+                <div className="flex items-center gap-8">
+                    <span className="font-headline-md text-headline-md font-bold tracking-tighter text-primary">Datafy Technology</span>
+                    <div className="hidden md:flex gap-6 items-center">
+                        <a className="font-body-md text-body-md tracking-tight text-on-surface-variant hover:text-primary transition-colors" href="#">Solutions</a>
+                        <a className="font-body-md text-body-md tracking-tight text-secondary font-semibold border-b-2 border-secondary" href="#">Industries</a>
+                        <a className="font-body-md text-body-md tracking-tight text-on-surface-variant hover:text-primary transition-colors" href="#">Insights</a>
+                        <a className="font-body-md text-body-md tracking-tight text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+                    </div>
+                </div>
+                <div className="flex items-center gap-4">
+                    <div className="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/30">
+                        <Search className="text-on-surface-variant w-4 h-4 mr-2" />
+                        <input className="bg-transparent border-none focus:ring-0 text-label-sm w-32 font-label-sm" placeholder="Search insights..." type="text"/>
+                    </div>
+                    <button className="bg-primary-container text-on-primary font-body-md px-6 py-3 rounded-lg hover:opacity-90 transition-all Active:scale-[0.99]">
+                        Schedule Consultation
+                    </button>
+                </div>
+            </nav>
+        );
+
+        const IndustryCard = ({ title, category, description, features, image, linkText }) => (
+            <div className="group relative bg-surface-white border border-outline-variant/10 rounded-xl overflow-hidden industry-grid-item shadow-sm hover:shadow-xl transition-all duration-500">
+                <div 
+                    className="h-64 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
+                    style={{ backgroundImage: `url('${image}')` }}
+                ></div>
+                <div className="p-8">
+                    <span className="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-2">{category}</span>
+                    <h3 className="font-headline-md text-headline-md mb-4">{title}</h3>
+                    <p className="font-body-md text-body-md text-on-surface-variant mb-6">{description}</p>
+                    <ul className="space-y-3 mb-8">
+                        {features.map((feature, idx) => (
+                            <li key={idx} className="flex items-center gap-2 text-sm text-on-surface-variant">
+                                <CheckCircle2 className="text-secondary w-4 h-4" /> {feature}
+                            </li>
+                        ))}
+                    </ul>
+                    <a className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all" href="#">
+                        {linkText} <ChevronRight className="w-4 h-4" />
+                    </a>
+                </div>
+            </div>
+        );
+
+        const ExpertiseSection = () => {
+            const industries = [
+                {
+                    category: "FinTech & Banking",
+                    title: "Financial Services",
+                    description: "Resilient payment gateways, AI-driven risk assessment, and core banking modernization for the next generation of finance.",
+                    features: ["Compliance & Regulatory Tech", "Fraud Detection AI"],
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBZsGD8-w0fDwKNBDniiXGvgTEcJ8OhoGeawzInN735B6m6V-pWJeu590QrY2I0FINwLrjBZNR2v6I6eiM3VQpp3dC7NRIuHqwcFEADBxU40S46vjLmxFdtg6btIVvIviw4kMgcJ56Jlr89xk7ZkIdZm0yti9vWGY3qn3-DGgbzpP8SkVJT13sgjwS6RPuDGw2Z2lmj0hQ9WK4DcbHU_vRxrGqrIE7EeVz55KGF5y0MB6Hm1odQ0ZXF",
+                    linkText: "Explore Financial"
+                },
+                {
+                    category: "HealthTech",
+                    title: "Healthcare",
+                    description: "Patient-centric digital health platforms and telemedicine infrastructure designed for accessibility and data security.",
+                    features: ["Health Data Interoperability", "Remote Patient Monitoring"],
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCVVLuz5_OWgF3jj4PVbeeo_uR5HJxzaSHb7kLNlssoWz0x7kctMRjPORO47S4ujUzA49Yi4vKsMY1GrA8lJSw5uPF2clsI5gTB1izazmKHn6uN4i9oO61WBhBIycESg0G7L4mwTa9AWWs_oiRKCxVqIm82avdd7RZG-V75LWV6X7mAYkkoMTNmZFkvbC9L_SCHDmNHOW2xZpDpH3wtREJO1pyc7Z3wn-Qa5x-fHJ2wr7YpCG_2bAft",
+                    linkText: "Explore Health"
+                },
+                {
+                    category: "EdTech",
+                    title: "Education",
+                    description: "Scaling learning through robust LMS development, virtual classrooms, and data-driven student performance analytics.",
+                    features: ["Adaptive Learning Platforms", "Institutional Resource Planning"],
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCySYN7UbeAa5OmAeq3bUp_j0vMNrKxGEeFeur_CR29CMnMF7KAvNl3VaDMKHzZ6aoc-0DDxycperMRohIVMbUgrc3FdvCSidvVdjb4MlmAnj315NOI73V-D0N6jBMefDSDpsUVLB1YzBg8NxX8JrTVrv_1EesBX6gZWDTgXC_emxOFUEqlrOa6xwLYmTxdHuKdagUlYZ_c8k41a4JT7kjAiIu4JMHGfWdBTQxbvfVZmSp5R974gmO5",
+                    linkText: "Explore Education"
+                },
+                {
+                    category: "Supply Chain",
+                    title: "Logistics",
+                    description: "Optimizing movement through IoT tracking, automated fleet management, and predictive supply chain modeling.",
+                    features: ["Real-time Fleet Tracking", "Warehouse Automation"],
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDab0CFqpD-ZjWdYYf_8qwqO2oewOONZoaJsqajA4HlrAof5TI-xkQOxlCWUxT1ZmoUA7hZYH4u_3Q1wnZHM98jYJndaPOOXy3VKWWCm3rd2oyGIi4Ss_SdaAs-t_dZlF2juHhsNAqUfbNTFJYcNGk9J9Rg-Ewo4RAFWVE98sbgjw5gImUAI991yqRa9AiWmf4rm4Ila8tbFHvhtQ-w5q0oESvxTNyotaBaE1w4-eWNEoPjCGbHXB_J",
+                    linkText: "Explore Logistics"
+                },
+                {
+                    category: "Energy & Natural Resources",
+                    title: "Oil & Gas",
+                    description: "Modernizing traditional infrastructure with digital twins, predictive maintenance, and real-time operational visibility.",
+                    features: ["Digital Twin Modeling", "HSE Data Management"],
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAr-rWI1qUKdd-25y_KBPM0gsEORpeyiR0Kj_4DOuBF7naxDM5DXeKu-CikFuIqHSKWX1x2DXt4NBj-xYCg6YzDm0SVi35sToujiHkJEPLzteJyXlPKJkGOhzcug1QjnDQT_Gm5_xIVSAelFLW9HsdveyaFUAf5jjsHrGrRaibFkYC0ARqu1_UgBOGvZGgcElBxlA_L0_3aNCVO8PA33AikgkmcsP3ynCEOG9AUJhVGgp0W5n64Lnz4",
+                    linkText: "Explore Energy"
+                },
+                {
+                    category: "Community & Non-Profit",
+                    title: "Faith-Based Organizations",
+                    description: "Streamlining operations and expanding reach through digital engagement tools and centralized management systems.",
+                    features: ["Donor Management Systems", "Global Content Streaming"],
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCqu1f7PIDmcp-zhYps6ntXO6uX_cPkpZ2g9_4GLZ9Uc3VclOSeCwHNTHZJkMyS9SAm8uxzdTqMfLLuxVJaqOswtV9mhVbOriUrEyhrUxe_Qgra63FygVewwXLYZ-JXbYJCLGOiGJ2eSGq1iQVXs7D0wZaR3yV8KOGDD8a7sS5DAN1xcSTOB2P_-JRu1GR6Cc0NnEsxmzVPn8IMKTrRGILmHrxv7xs6TE-iB5_sEzliiPhlt4hd1arX",
+                    linkText: "Explore Community"
+                }
+            ];
+
+            return (
+                <section className="py-24 bg-surface-container-low/30 px-margin-desktop">
+                    <div className="max-w-container-max mx-auto">
+                        <div className="mb-16">
+                            <h2 className="font-headline-lg text-headline-lg mb-4">Domain Expertise</h2>
+                            <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                                Six specialized divisions focused on unique regulatory environments, operational hurdles, and growth opportunities within the global landscape.
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                            {industries.map((item, index) => (
+                                <IndustryCard key={index} {...item} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const GlobalStandards = () => (
+            <section className="py-32 px-margin-desktop max-w-container-max mx-auto">
+                <div className="text-center mb-16">
+                    <h2 className="font-headline-lg text-headline-lg mb-4">Engineered for Longevity</h2>
+                    <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                        Our partnerships aren't just about delivery; they are about co-creating the future of your organization through measurable outcomes.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-gutter auto-rows-[280px]">
+                    <div className="md:col-span-4 lg:col-span-8 bg-primary-container p-12 rounded-xl flex flex-col justify-end relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-12 opacity-10 transition-opacity group-hover:opacity-20">
+                            <TrendingUp className="w-[200px] h-[200px] text-white" />
+                        </div>
+                        <div className="relative z-10">
+                            <span className="font-label-sm text-label-sm uppercase text-secondary-fixed mb-4 block">Measurable Value</span>
+                            <h3 className="font-headline-md text-headline-md text-white mb-6">40% Average Increase in Operational Efficiency</h3>
+                            <p className="text-on-primary-fixed-variant font-body-md max-w-lg">
+                                Through precision data engineering and cloud native transitions, we help enterprises strip away legacy friction and focus on their core mission.
+                            </p>
+                        </div>
+                    </div>
+                    <div className="md:col-span-2 lg:col-span-4 glass-card p-10 rounded-xl border-outline-variant/10 flex flex-col">
+                        <Handshake className="text-secondary mb-6 w-10 h-10" />
+                        <h3 className="font-headline-md text-headline-md mb-4 text-primary leading-tight">Strategic Advisory</h3>
+                        <p className="text-on-surface-variant font-body-md">
+                            We don't just build; we guide. Our consultants provide the roadmap for multi-year digital evolution.
+                        </p>
+                    </div>
+                    <div className="md:col-span-2 lg:col-span-4 bg-surface-container-high p-10 rounded-xl flex flex-col justify-between">
+                        <div>
+                            <h3 className="font-headline-md text-headline-md mb-2">Global Standards</h3>
+                            <p className="text-on-surface-variant font-body-md">ISO-compliant security protocols baked into every line of code.</p>
+                        </div>
+                        <div className="flex items-center gap-4 border-t border-outline-variant/20 pt-6 mt-6">
+                            <VerifiedUser className="text-secondary w-5 h-5" />
+                            <span className="font-label-sm text-label-sm uppercase">Secure Infrastructure</span>
+                        </div>
+                    </div>
+                    <div className="md:col-span-4 lg:col-span-8 group relative rounded-xl overflow-hidden">
+                        <div 
+                            className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" 
+                            style={{ backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2zmfYxJntajI_pcFFd0sEiracOt5pPc33v_UekStqGU1a4UvkK38wTEY9e3PpYtQutQWBSWI0q9vL4NzCChWcgYtfyQSdLJfvIuzYpYoI7jJXDwE6PMY6Ql68NUF7BzitGJhnYUlMWeyCM9hnxufa_iGutnWLawr6ddDSaYGhSAsGDweM3PMW4lvPcAOIMAx3S6HVJ249sL5cORt0QnbZYpG24PT9yEBvjNVQXo_eLknlXF95ZDtm')` }}
+                        ></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-transparent"></div>
+                        <div className="relative z-10 h-full p-12 flex flex-col justify-center max-w-md">
+                            <span className="font-label-sm text-label-sm uppercase text-secondary mb-2">Featured Transformation</span>
+                            <h3 className="font-headline-md text-headline-md text-white mb-4">The Nairobi Financial Hub Evolution</h3>
+                            <p className="text-white/80 font-body-md mb-6">How a regional leader transitioned to a serverless ecosystem in 12 months.</p>
+                            <a className="text-secondary-fixed font-bold flex items-center gap-2" href="#">
+                                Read Case Study <NorthEast className="w-4 h-4" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="bg-primary-container full-width py-20 border-t border-primary/10">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+                    <div className="col-span-1 md:col-span-2">
+                        <span className="font-headline-md text-headline-md text-on-primary font-bold block mb-4">Datafy Technology</span>
+                        <p className="text-on-primary-fixed-variant max-w-sm mb-8 font-body-md">
+                            Driving global digital transformation from the heart of Africa. Excellence is our standard; innovation is our vehicle.
+                        </p>
+                        <div className="flex gap-4">
+                            <a className="w-10 h-10 rounded-full bg-surface-container-low/10 flex items-center justify-center text-white hover:bg-secondary transition-all" href="#">
+                                <Share className="w-5 h-5" />
+                            </a>
+                            <a className="w-10 h-10 rounded-full bg-surface-container-low/10 flex items-center justify-center text-white hover:bg-secondary transition-all" href="#">
+                                <Hub className="w-5 h-5" />
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-6">Global Offices</h4>
+                        <ul className="space-y-4">
+                            <li><a className="font-body-md text-on-primary-fixed-variant hover:text-on-primary transition-all" href="#">Lagos Hub</a></li>
+                            <li><a className="font-body-md text-on-primary-fixed-variant hover:text-on-primary transition-all" href="#">Nairobi Office</a></li>
+                            <li><a className="font-body-md text-on-primary-fixed-variant hover:text-on-primary transition-all" href="#">Global Headquarters</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-6">Resources</h4>
+                        <ul className="space-y-4">
+                            <li><a className="font-body-md text-on-primary-fixed-variant hover:text-on-primary transition-all" href="#">Sustainability</a></li>
+                            <li><a className="font-body-md text-on-primary-fixed-variant hover:text-on-primary transition-all" href="#">Privacy Architecture</a></li>
+                            <li><a className="font-body-md text-on-primary-fixed-variant hover:text-on-primary transition-all" href="#">Insights</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="max-w-container-max mx-auto px-margin-desktop mt-20 pt-8 border-t border-on-primary-fixed-variant/20 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="font-body-md text-on-primary-fixed-variant text-sm">© 2024 Datafy Technology. African Excellence, Global Impact.</p>
+                    <div className="flex gap-8">
+                        <a className="font-body-md text-on-primary-fixed-variant text-sm hover:text-on-primary transition-all" href="#">Terms</a>
+                        <a className="font-body-md text-on-primary-fixed-variant text-sm hover:text-on-primary transition-all" href="#">Privacy</a>
+                        <a className="font-body-md text-on-primary-fixed-variant text-sm hover:text-on-primary transition-all" href="#">Ethics</a>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="bg-surface text-on-surface font-body-md overflow-x-hidden">
+                <Navbar />
+                <main>
+                    {/* Hero Section */}
+                    <section className="relative py-24 md:py-32 px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                            <div>
+                                <span className="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-4 block">Standard of Excellence</span>
+                                <h1 className="font-display-lg text-display-lg mb-6 leading-[1.1]">Strategic Impact Across Every <span className="text-secondary">Industry.</span></h1>
+                                <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                                    At Datafy Technology, we bridge the gap between complex enterprise challenges and transformative digital solutions. Our deep domain expertise ensures your industry leads in the global digital economy.
+                                </p>
+                                <div className="flex flex-wrap gap-4">
+                                    <button className="bg-primary text-white font-body-md px-8 py-4 rounded-lg flex items-center gap-2 hover:bg-secondary transition-all">
+                                        Partner With Us <ArrowForward className="w-5 h-5" />
+                                    </button>
+                                    <button className="border border-outline-variant text-primary font-body-md px-8 py-4 rounded-lg hover:bg-surface-container-low transition-all">
+                                        View Case Studies
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="relative h-[500px] rounded-xl overflow-hidden shadow-xl bg-surface-container-high/20">
+                                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8">
+                                    <div className="glass-card p-6 rounded-lg w-full">
+                                        <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Live Transformation</p>
+                                        <p className="font-headline-md text-headline-md text-on-primary-fixed">Digitalizing Pan-African Logistics</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <ExpertiseSection />
+                    <GlobalStandards />
+
+                    {/* CTA Section */}
+                    <section className="py-24 bg-surface-container-lowest">
+                        <div className="max-w-container-max mx-auto px-margin-desktop text-center">
+                            <div className="bg-primary p-16 rounded-2xl relative overflow-hidden">
+                                <div className="absolute inset-0 opacity-20"></div>
+                                <div className="relative z-10">
+                                    <h2 className="font-display-lg text-display-lg text-white mb-6">Ready to Lead Your Industry?</h2>
+                                    <p className="text-primary-fixed-dim text-body-lg mb-10 max-w-2xl mx-auto">
+                                        Join the ranks of enterprises that have secured their future through strategic digital transformation with Datafy Technology.
+                                    </p>
+                                    <button className="bg-secondary text-white font-headline-md px-12 py-5 rounded-lg hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-all">
+                                        Request Industry Audit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+                <Footer />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body></html>

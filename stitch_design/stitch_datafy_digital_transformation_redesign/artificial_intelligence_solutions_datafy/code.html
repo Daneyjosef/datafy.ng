@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Solutions | Datafy Technology</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(1, 33, 4, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #000000 0%, #306c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#aaf778",
+                        "on-primary-fixed": "#012104",
+                        "tertiary-fixed": "#cfeace",
+                        "surface-bright": "#f9f9f7",
+                        "on-primary-container": "#698d64",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f4f1",
+                        "on-secondary-fixed": "#0a2100",
+                        "on-tertiary-fixed": "#0a200f",
+                        "on-tertiary-fixed-variant": "#354c38",
+                        "primary-fixed": "#c6edbd",
+                        "secondary": "#306c00",
+                        "on-error": "#ffffff",
+                        "outline": "#73796f",
+                        "vibrant-blue": "#0066FF",
+                        "surface-white": "#FFFFFF",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#90da5f",
+                        "tertiary": "#000000",
+                        "surface-tint": "#446741",
+                        "surface-container": "#eeeeec",
+                        "tertiary-container": "#0a200f",
+                        "inverse-surface": "#2f3130",
+                        "primary-fixed-dim": "#aad1a3",
+                        "on-secondary-fixed-variant": "#225100",
+                        "on-secondary-container": "#337200",
+                        "inverse-primary": "#aad1a3",
+                        "on-primary-fixed-variant": "#2d4e2b",
+                        "primary-container": "#012104",
+                        "surface-container-highest": "#e2e3e0",
+                        "background": "#f9f9f7",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "secondary-fixed": "#aaf778",
+                        "surface-container-high": "#e8e8e6",
+                        "on-tertiary": "#ffffff",
+                        "deep-navy": "#0A142F",
+                        "outline-variant": "#c2c8bd",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-tertiary-container": "#718a72",
+                        "on-surface-variant": "#424840",
+                        "on-surface": "#1a1c1b",
+                        "slate-gray": "#4A5568",
+                        "surface-dim": "#dadad8",
+                        "surface-variant": "#e2e3e0",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1a1c1b",
+                        "tertiary-fixed-dim": "#b3cdb3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Inter"],
+                        "display-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container/30">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/20 shadow-sm transition-all duration-300">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-base">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">Datafy Technology</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md tracking-tight" href="#">Solutions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md tracking-tight" href="#">Industries</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md tracking-tight" href="#">Insights</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md tracking-tight" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary">search</button>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-DEFAULT font-body-md hover:opacity-90 transition-all active:scale-[0.98]">
+                    Schedule Consultation
+                </button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-32 pb-40 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-7 z-10">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-6 block">Intelligence at Scale</span>
+<h1 class="font-display-lg text-display-lg mb-8 leading-tight">
+                        Cognitive Solutions for <span class="text-gradient">Enterprise Impact.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12">
+                        Leverage AI to automate repetitive tasks, improve customer experiences, and make smarter business decisions with our bespoke neural frameworks.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-DEFAULT font-headline-md text-[18px] hover:bg-secondary transition-colors">
+                            Deploy AI Solutions
+                        </button>
+<button class="border border-outline-variant px-8 py-4 rounded-DEFAULT font-headline-md text-[18px] hover:bg-surface-container-low transition-colors">
+                            View Case Studies
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="relative w-full aspect-square bg-surface-container-low rounded-full flex items-center justify-center animate-float">
+
+<div class="glass-card p-8 rounded-xl shadow-xl w-64 absolute -top-4 -right-4 z-20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm uppercase">Decision Engine</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[85%]"></div>
+</div>
+<p class="text-[10px] mt-2 text-on-surface-variant">Efficiency Optimization: 85%</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Services Grid -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-20 text-center max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-6">Our AI Capabilities</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    We bridge the gap between experimental AI and production-ready enterprise technology, focusing on five key transformation pillars.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-gutter h-auto md:h-[800px]">
+<!-- Large Feature: AI Business Automation -->
+<div class="md:col-span-2 md:row-span-1 group relative bg-primary-container text-on-primary overflow-hidden rounded-lg p-10 flex flex-col justify-end">
+<div class="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">precision_manufacturing</span>
+</div>
+<div class="z-10">
+<span class="font-label-sm text-label-sm uppercase text-secondary-fixed mb-4 block">Process optimization</span>
+<h3 class="font-headline-md text-headline-md mb-4">AI Business Automation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant/80 max-w-md">
+                            Eliminate operational bottlenecks by deploying intelligent agents that manage complex workflows with 99.9% accuracy.
+                        </p>
+</div>
+</div>
+<!-- AI Customer Support -->
+<div class="md:col-span-1 md:row-span-1 border border-outline-variant/30 rounded-lg p-10 hover:border-secondary transition-all flex flex-col justify-between group">
+<span class="material-symbols-outlined text-secondary text-4xl group-hover:scale-110 transition-transform">support_agent</span>
+<div>
+<h3 class="font-headline-md text-[24px] mb-3">AI Customer Support</h3>
+<p class="font-body-md text-on-surface-variant">Conversational interfaces that resolve issues instantly, anywhere in the world.</p>
+</div>
+</div>
+<!-- Intelligent Document Processing -->
+<div class="md:col-span-1 md:row-span-1 bg-surface-container-low rounded-lg p-10 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">description</span>
+<h3 class="font-headline-md text-[24px] mb-3">Document Processing</h3>
+</div>
+<p class="font-body-md text-on-surface-variant">Extract structured insights from millions of unstructured documents in seconds.</p>
+</div>
+<!-- Predictive Analytics & GenAI (Split Column) -->
+<div class="md:col-span-2 md:row-span-1 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="border border-outline-variant/30 rounded-lg p-10 hover:bg-surface-bright transition-all">
+<h3 class="font-headline-md text-[24px] mb-3">Predictive Analytics</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Anticipate market shifts and consumer behavior before they happen.</p>
+<div class="flex gap-1 h-12 items-end">
+<div class="w-2 bg-secondary/20 h-4"></div>
+<div class="w-2 bg-secondary/40 h-8"></div>
+<div class="w-2 bg-secondary/60 h-6"></div>
+<div class="w-2 bg-secondary h-12"></div>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container rounded-lg p-10 relative overflow-hidden">
+<h3 class="font-headline-md text-[24px] mb-3">Generative AI Integration</h3>
+<p class="font-body-md opacity-80">Custom LLM training and integration for specialized industry requirements.</p>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-10">bolt</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Strategy & Consulting Section -->
+<section class="py-32 bg-surface-container-low/40">
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative rounded-xl overflow-hidden shadow-2xl h-[600px]">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-end editorial photograph of two business executives in a minimalist, sun-drenched architectural office in Nairobi. They are reviewing complex holographic data visualizations on a glass table. The lighting is soft and professional, emphasizing a modern light-mode aesthetic with Emerald and slate-gray accents. The mood is focused and visionary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmHQ9c1IuU8JJh1DI-8EgLtC_gPM80_BdAT0aZBMT01Ci6hBUauvYeMDSyqHv5ODA_XrBx32XJgCxIzY0vuo4OiEDQREuupHrbXKomsoPOiTZzeoHlr6UmGwVIuaINQ1r1kvyqh8AMwP6SnIqOXtMixFoJBSvHVuRdOxzoS5cXSilnoKG2kwpLQLKN_Ev-WQZTgGellEafE9dQCzsHC-tqgdb9Be8wJzHf95KxKGdmL-LIrMM1rMYT"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary-container/60 to-transparent"></div>
+<div class="absolute bottom-10 left-10 right-10">
+<div class="glass-card p-6 rounded-lg">
+<p class="font-body-md text-on-primary-fixed italic italic">"Datafy's strategy wasn't just about the technology; it was about reimagining our entire service model through the lens of intelligence."</p>
+<div class="mt-4 border-t border-outline-variant/20 pt-4 flex justify-between items-center">
+<span class="font-label-sm text-label-sm uppercase">Global Head of Digital, FinTech Africa</span>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-6 block">The Transformation Journey</span>
+<h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">Strategy &amp; <span class="font-normal italic">Consulting</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">
+                        We don't just build models; we architect transformation. Our consulting team works with C-suite leaders to define AI roadmaps that align with specific business outcomes, ensuring every investment delivers measurable ROI.
+                    </p>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0">
+<span class="font-label-sm text-secondary">01</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[20px] mb-2">Feasibility Assessment</h4>
+<p class="text-on-surface-variant">Rigorous audit of data infrastructure and organizational readiness for AI adoption.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0">
+<span class="font-label-sm text-secondary">02</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[20px] mb-2">Ethical Governance</h4>
+<p class="text-on-surface-variant">Developing frameworks for responsible AI usage, data privacy, and bias mitigation.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0">
+<span class="font-label-sm text-secondary">03</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[20px] mb-2">Change Management</h4>
+<p class="text-on-surface-variant">Training and cultural alignment to ensure seamless human-AI collaboration.</p>
+</div>
+</div>
+</div>
+<button class="mt-12 group flex items-center gap-3 font-headline-md text-[18px] text-primary hover:text-secondary transition-colors">
+                        Book a Strategy Session
+                        <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Dynamic Data Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto border-y border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg mb-6">Real-Time Precision</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Our models operate at the edge of possibility, delivering sub-second latency and unprecedented precision in high-stakes environments.
+                    </p>
+</div>
+<div class="flex gap-12">
+<div class="text-center">
+<div class="font-display-lg text-[64px] text-primary">0.4s</div>
+<span class="font-label-sm uppercase tracking-widest text-on-surface-variant">Latency</span>
+</div>
+<div class="text-center">
+<div class="font-display-lg text-[64px] text-secondary">99%</div>
+<span class="font-label-sm uppercase tracking-widest text-on-surface-variant">Precision</span>
+</div>
+</div>
+</div>
+<div class="w-full h-[400px] bg-surface-container rounded-xl relative overflow-hidden">
+
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="glass-card px-10 py-8 rounded-full border border-white/20">
+<span class="font-label-sm text-label-sm tracking-widest text-primary uppercase">Neural Network Status: Optimized</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-40 text-center">
+<div class="px-margin-desktop max-w-3xl mx-auto">
+<h2 class="font-display-lg text-display-lg mb-10">Ready to automate the <span class="italic font-normal">impossible?</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">
+                    Connect with our solution architects to build a custom AI ecosystem for your enterprise.
+                </p>
+<button class="bg-primary-container text-on-primary px-12 py-6 rounded-DEFAULT font-headline-md text-[20px] hover:bg-primary transition-all shadow-xl active:scale-95">
+                    Consult Our Engineers
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary-container text-on-primary-fixed full-width py-20 border-t border-primary/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-headline-md text-headline-md text-on-primary mb-6 block">Datafy Technology</span>
+<p class="font-body-md opacity-60">© 2024 Datafy Technology.<br/>African Excellence, Global Impact.</p>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-8">Global Reach</h5>
+<ul class="space-y-4">
+<li><a class="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">Global Headquarters</a></li>
+<li><a class="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">Lagos Hub</a></li>
+<li><a class="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">Nairobi Office</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-8">Ethics</h5>
+<ul class="space-y-4">
+<li><a class="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">Sustainability</a></li>
+<li><a class="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">Privacy Architecture</a></li>
+<li><a class="text-on-primary-fixed-variant hover:text-on-primary transition-all hover:underline" href="#">AI Bill of Rights</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed mb-8">Newsletter</h5>
+<div class="flex border-b border-outline-variant/30 pb-2">
+<input class="bg-transparent border-none focus:ring-0 text-on-primary-fixed placeholder:text-on-primary-fixed/40 w-full" placeholder="Email address" type="email"/>
+<button class="material-symbols-outlined text-on-primary">arrow_forward</button>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and subtle header behavior
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                nav.classList.add('py-2', 'bg-surface/95');
+                nav.classList.remove('h-20');
+                nav.classList.add('h-16');
+            } else {
+                nav.classList.remove('py-2', 'bg-surface/95');
+                nav.classList.remove('h-16');
+                nav.classList.add('h-20');
+            }
+        });
+
+        // Intersection Observer for fade-in effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body></html>
