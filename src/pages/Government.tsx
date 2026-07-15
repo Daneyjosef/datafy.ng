@@ -3,9 +3,11 @@ import {
   ArrowUpRight,
   Building2,
   CheckCircle2,
+  FileStack,
   Fingerprint,
   Globe,
   Landmark,
+  Map,
   ShieldCheck,
 } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -152,6 +154,24 @@ function SolutionsGrid() {
           <p className="text-on-surface-variant">
             IoT-driven urban infrastructure for traffic management, utility monitoring, and public
             safety automation.
+          </p>
+        </div>
+
+        <div className="md:col-span-6 glass-card border border-outline-variant/30 rounded-xl p-8 hover:-translate-y-1 transition-transform">
+          <Map className="text-secondary mb-6" size={40} />
+          <h3 className="text-2xl font-bold text-primary mb-4">Land Administration</h3>
+          <p className="text-on-surface-variant">
+            Digitized cadastral records and title registries that bring transparency and speed to
+            land governance.
+          </p>
+        </div>
+
+        <div className="md:col-span-6 bg-surface-container-low border border-outline-variant/30 rounded-xl p-8 hover:border-secondary/40 transition-colors">
+          <FileStack className="text-secondary mb-6" size={40} />
+          <h3 className="text-2xl font-bold text-primary mb-4">Document Management Systems</h3>
+          <p className="text-on-surface-variant">
+            Centralized, auditable records management for ministries handling sensitive
+            institutional documentation.
           </p>
         </div>
       </div>

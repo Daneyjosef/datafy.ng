@@ -1,4 +1,5 @@
 import { Globe, Share2 } from "lucide-react";
+import { OFFICES } from "../data/offices";
 
 export function Footer() {
   return (
@@ -6,8 +7,7 @@ export function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-page max-w-container mx-auto">
         <div className="md:col-span-1">
           <div className="flex items-center gap-2 mb-6">
-            <img src="/datafy-icon.png" alt="" className="h-7 w-auto" />
-            <h2 className="font-display text-2xl font-bold tracking-tighter">Datafy Technology</h2>
+            <img src="/datafy-icon.png" alt="Datafy Technology" className="h-7 w-auto" />
           </div>
           <p className="text-on-primary-fixed-variant font-body mb-8">
             African Excellence, Global Impact. Engineering the future since 2018.
@@ -16,11 +16,16 @@ export function Footer() {
         <div>
           <h4 className="font-label text-xs uppercase tracking-widest opacity-60 mb-6">Global Headquarters</h4>
           <ul className="space-y-4">
-            {["Lagos Hub", "Nairobi Office", "London Satellite"].map((item) => (
-              <li key={item}>
+            {OFFICES.map((office) => (
+              <li key={office.city} className="flex items-center gap-2">
                 <a className="text-on-primary-fixed-variant hover:text-on-primary font-body transition-all" href="#">
-                  {item}
+                  {office.city}
                 </a>
+                {office.status === "opening-soon" && (
+                  <span className="font-label text-[10px] uppercase tracking-widest text-secondary-fixed bg-on-primary/10 px-2 py-0.5 rounded-full">
+                    Opening Soon
+                  </span>
+                )}
               </li>
             ))}
           </ul>

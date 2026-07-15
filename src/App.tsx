@@ -6,6 +6,14 @@ import { Home } from "./pages/Home";
 import { AiSolutions } from "./pages/AiSolutions";
 import { Government } from "./pages/Government";
 import { Industries } from "./pages/Industries";
+import { EnterpriseSoftware } from "./pages/EnterpriseSoftware";
+import { CloudInfrastructure } from "./pages/CloudInfrastructure";
+import { Cybersecurity } from "./pages/Cybersecurity";
+import { DigitalTransformation } from "./pages/DigitalTransformation";
+import { FinTech } from "./pages/FinTech";
+import { SmartEnergy } from "./pages/SmartEnergy";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,8 +32,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ai-solutions" element={<AiSolutions />} />
+          <Route path="/enterprise-software" element={<EnterpriseSoftware />} />
+          <Route path="/cloud-infrastructure" element={<CloudInfrastructure />} />
+          <Route path="/cybersecurity" element={<Cybersecurity />} />
+          <Route path="/digital-transformation" element={<DigitalTransformation />} />
           <Route path="/government" element={<Government />} />
+          <Route path="/fintech" element={<FinTech />} />
+          <Route path="/smart-energy" element={<SmartEnergy />} />
           <Route path="/industries" element={<Industries />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <Footer />

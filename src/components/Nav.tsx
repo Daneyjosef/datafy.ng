@@ -1,24 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, Search, X } from "lucide-react";
-
-const NAV_LINKS = [
-  { label: "Solutions", to: "/" },
-  { label: "AI Solutions", to: "/ai-solutions" },
-  { label: "Industries", to: "/industries" },
-  { label: "Government", to: "/government" },
-];
+import { ChevronDown, Menu, Search, X } from "lucide-react";
+import { SOLUTIONS } from "../data/solutions";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const { pathname } = useLocation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isSolutionPage = SOLUTIONS.some((s) => s.path === pathname);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setSolutionsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    setSolutionsOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -32,19 +45,88 @@ export function Nav() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`font-body text-base tracking-tight transition-colors ${
-                pathname === link.to
-                  ? "text-secondary font-semibold border-b-2 border-secondary"
+          <Link
+            to="/"
+            className={`font-body text-base tracking-tight transition-colors ${
+              pathname === "/"
+                ? "text-secondary font-semibold border-b-2 border-secondary"
+                : "text-on-surface-variant hover:text-primary"
+            }`}
+          >
+            Home
+          </Link>
+
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setSolutionsOpen((v) => !v)}
+              className={`flex items-center gap-1 font-body text-base tracking-tight transition-colors ${
+                isSolutionPage
+                  ? "text-secondary font-semibold"
                   : "text-on-surface-variant hover:text-primary"
               }`}
             >
-              {link.label}
-            </Link>
-          ))}
+              Solutions
+              <ChevronDown
+                size={16}
+                className={`transition-transform ${solutionsOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {solutionsOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-80 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-xl p-3 grid gap-1">
+                {SOLUTIONS.map((solution) => {
+                  const Icon = solution.icon;
+                  return (
+                    <Link
+                      key={solution.slug}
+                      to={solution.path}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                        pathname === solution.path
+                          ? "bg-surface-container-low text-secondary"
+                          : "hover:bg-surface-container-low text-on-surface"
+                      }`}
+                    >
+                      <Icon size={18} className="text-secondary shrink-0" />
+                      <span className="font-body text-sm">{solution.navLabel}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <Link
+            to="/industries"
+            className={`font-body text-base tracking-tight transition-colors ${
+              pathname === "/industries"
+                ? "text-secondary font-semibold border-b-2 border-secondary"
+                : "text-on-surface-variant hover:text-primary"
+            }`}
+          >
+            Industries
+          </Link>
+
+          <Link
+            to="/about"
+            className={`font-body text-base tracking-tight transition-colors ${
+              pathname === "/about"
+                ? "text-secondary font-semibold border-b-2 border-secondary"
+                : "text-on-surface-variant hover:text-primary"
+            }`}
+          >
+            About
+          </Link>
+
+          <Link
+            to="/contact"
+            className={`font-body text-base tracking-tight transition-colors ${
+              pathname === "/contact"
+                ? "text-secondary font-semibold border-b-2 border-secondary"
+                : "text-on-surface-variant hover:text-primary"
+            }`}
+          >
+            Contact
+          </Link>
         </div>
 
         <div className="flex items-center gap-6">
@@ -65,17 +147,50 @@ export function Nav() {
       </nav>
 
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-surface border-b border-outline-variant/20 p-6 flex flex-col gap-4 shadow-xl">
-          {NAV_LINKS.map((link) => (
+        <div className="md:hidden absolute top-full left-0 w-full max-h-[calc(100vh-5rem)] overflow-y-auto bg-surface border-b border-outline-variant/20 p-6 flex flex-col gap-2 shadow-xl">
+          <Link
+            to="/"
+            onClick={() => setMobileOpen(false)}
+            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
+          >
+            Home
+          </Link>
+
+          <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant mt-4 mb-1">
+            Solutions
+          </span>
+          {SOLUTIONS.map((solution) => (
             <Link
-              key={link.to}
-              to={link.to}
+              key={solution.slug}
+              to={solution.path}
               onClick={() => setMobileOpen(false)}
-              className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg"
+              className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
             >
-              {link.label}
+              {solution.navLabel}
             </Link>
           ))}
+
+          <Link
+            to="/industries"
+            onClick={() => setMobileOpen(false)}
+            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg mt-4 pt-4 border-t border-outline-variant/20"
+          >
+            Industries
+          </Link>
+          <Link
+            to="/about"
+            onClick={() => setMobileOpen(false)}
+            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => setMobileOpen(false)}
+            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
+          >
+            Contact
+          </Link>
         </div>
       )}
     </header>

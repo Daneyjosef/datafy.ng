@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BarChart3,
+  CheckCircle2,
   Cpu,
   FileText,
   Headphones,
@@ -8,6 +9,10 @@ import {
   Zap,
 } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { NeuralNetworkCanvas } from "../components/NeuralNetworkCanvas";
+import { SOLUTIONS } from "../data/solutions";
+
+const AI_SERVICES = SOLUTIONS.find((s) => s.slug === "ai-solutions")!.services;
 
 const STRATEGY_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAmHQ9c1IuU8JJh1DI-8EgLtC_gPM80_BdAT0aZBMT01Ci6hBUauvYeMDSyqHv5ODA_XrBx32XJgCxIzY0vuo4OiEDQREuupHrbXKomsoPOiTZzeoHlr6UmGwVIuaINQ1r1kvyqh8AMwP6SnIqOXtMixFoJBSvHVuRdOxzoS5cXSilnoKG2kwpLQLKN_Ev-WQZTgGellEafE9dQCzsHC-tqgdb9Be8wJzHf95KxKGdmL-LIrMM1rMYT";
@@ -150,6 +155,30 @@ const STRATEGY_STEPS = [
   },
 ];
 
+function AllServices() {
+  return (
+    <section className="py-24 px-page max-w-container mx-auto reveal">
+      <div className="mb-16 max-w-2xl">
+        <span className="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">
+          Services
+        </span>
+        <h2 className="font-display text-4xl lg:text-5xl font-semibold">Full AI Service List</h2>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {AI_SERVICES.map((service) => (
+          <div
+            key={service}
+            className="group flex items-center gap-4 border border-outline-variant/30 rounded-lg p-6 hover:border-secondary hover:bg-surface-container-low transition-all"
+          >
+            <CheckCircle2 className="text-secondary shrink-0" size={22} />
+            <span className="font-body text-lg">{service}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function StrategySection() {
   return (
     <section className="py-32 bg-surface-container-low/40 reveal">
@@ -236,7 +265,8 @@ function StatsSection() {
         </div>
       </div>
       <div className="w-full h-[400px] bg-surface-container rounded-xl relative overflow-hidden flex items-center justify-center">
-        <div className="glass-card px-10 py-8 rounded-full border border-white/20">
+        <NeuralNetworkCanvas className="absolute inset-0 w-full h-full" />
+        <div className="glass-card px-10 py-8 rounded-full border border-white/20 relative z-10">
           <span className="font-label text-xs tracking-widest text-primary uppercase">
             Neural Network Status: Optimized
           </span>
@@ -271,6 +301,7 @@ export function AiSolutions() {
     <>
       <Hero />
       <FeatureGrid />
+      <AllServices />
       <StrategySection />
       <StatsSection />
       <CTASection />

@@ -1,10 +1,17 @@
 import {
   ArrowRight,
+  Building2,
   CheckCircle2,
   ChevronRight,
+  Factory,
   Handshake,
+  Landmark,
   ShieldCheck,
+  Sprout,
+  Store,
+  TowerControl,
   TrendingUp,
+  type LucideIcon,
 } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
@@ -80,6 +87,17 @@ const INDUSTRIES: Industry[] = [
   },
 ];
 
+type AdditionalIndustry = { title: string; icon: LucideIcon };
+
+const ADDITIONAL_INDUSTRIES: AdditionalIndustry[] = [
+  { title: "Government", icon: Landmark },
+  { title: "Manufacturing", icon: Factory },
+  { title: "Agriculture", icon: Sprout },
+  { title: "Telecommunications", icon: TowerControl },
+  { title: "Real Estate", icon: Building2 },
+  { title: "Retail & E-commerce", icon: Store },
+];
+
 const FEATURED_TRANSFORMATION_IMAGE =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuD2zmfYxJntajI_pcFFd0sEiracOt5pPc33v_UekStqGU1a4UvkK38wTEY9e3PpYtQutQWBSWI0q9vL4NzCChWcgYtfyQSdLJfvIuzYpYoI7jJXDwE6PMY6Ql68NUF7BzitGJhnYUlMWeyCM9hnxufa_iGutnWLawr6ddDSaYGhSAsGDweM3PMW4lvPcAOIMAx3S6HVJ249sL5cORt0QnbZYpG24PT9yEBvjNVQXo_eLknlXF95ZDtm";
 
@@ -109,7 +127,15 @@ function Hero() {
           </div>
         </div>
         <div className="relative h-[500px] rounded-xl overflow-hidden shadow-xl bg-surface-container-high/20">
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8">
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src="/digitalized-logistics.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8 pointer-events-none">
             <div className="glass-card p-6 rounded-lg w-full">
               <p className="font-label text-xs uppercase text-secondary mb-2">Live Transformation</p>
               <p className="font-display text-2xl font-semibold text-on-primary-fixed">
@@ -167,6 +193,30 @@ function ExpertiseSection() {
             <IndustryCard key={item.title} {...item} />
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function AdditionalIndustries() {
+  return (
+    <section className="pb-24 px-page max-w-container mx-auto reveal">
+      <div className="mb-12">
+        <h2 className="font-display text-3xl lg:text-4xl font-semibold mb-2">Also Serving</h2>
+        <p className="font-body text-on-surface-variant max-w-2xl">
+          Beyond our core divisions, we bring the same rigor to these growing sectors.
+        </p>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        {ADDITIONAL_INDUSTRIES.map(({ title, icon: Icon }) => (
+          <div
+            key={title}
+            className="flex flex-col items-center text-center gap-3 border border-outline-variant/20 rounded-xl p-6 hover:border-secondary hover:bg-surface-container-low transition-all"
+          >
+            <Icon className="text-secondary" size={28} />
+            <span className="font-body text-sm font-medium">{title}</span>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -278,6 +328,7 @@ export function Industries() {
     <>
       <Hero />
       <ExpertiseSection />
+      <AdditionalIndustries />
       <GlobalStandards />
       <CTA />
     </>
