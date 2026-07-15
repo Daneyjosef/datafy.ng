@@ -194,17 +194,26 @@ function Methodology() {
 
 function VisionSection() {
   return (
-    <section className="py-32 bg-surface-container-low overflow-hidden reveal">
-      <div className="max-w-container mx-auto px-page">
-        <div className="glass-card rounded-[2rem] p-10 md:p-16 lg:p-24 text-center max-w-4xl mx-auto">
-          <span className="font-label text-xs uppercase tracking-widest text-secondary mb-6 block">
+    <section className="relative py-32 overflow-hidden reveal">
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/vr-vision.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <div className="absolute inset-0 bg-black/70" />
+      <div className="relative z-10 max-w-container mx-auto px-page">
+        <div className="text-center max-w-4xl mx-auto">
+          <span className="font-label text-xs uppercase tracking-widest text-secondary-fixed mb-6 block">
             Our Vision for 2030
           </span>
-          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-8">
+          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-8 text-white">
             We envision a future where African businesses compete globally through intelligent
             technology.
           </h2>
-          <p className="font-body text-lg text-on-surface-variant">
+          <p className="font-body text-lg text-white/80">
             By 2030, Datafy Technology aims to be one of Africa's leading providers of AI,
             enterprise software, cybersecurity, cloud infrastructure, fintech, and digital
             transformation services—helping organizations innovate, scale, and create lasting

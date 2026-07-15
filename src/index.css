@@ -87,6 +87,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   body {
     margin: 0;
@@ -97,6 +98,14 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  a,
+  button {
+    touch-action: manipulation;
   }
 }
 

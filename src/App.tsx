@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
+import { BottomTabBar } from "./components/BottomTabBar";
 import { Home } from "./pages/Home";
 import { AiSolutions } from "./pages/AiSolutions";
 import { Government } from "./pages/Government";
@@ -28,7 +29,7 @@ function App() {
     <div className="min-h-screen bg-surface text-on-surface font-body">
       <ScrollToTop />
       <Nav />
-      <main>
+      <main className="pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ai-solutions" element={<AiSolutions />} />
@@ -45,6 +46,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <BottomTabBar />
     </div>
   );
 }

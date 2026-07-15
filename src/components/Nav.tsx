@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, Search, X } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { SOLUTIONS } from "../data/solutions";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const { pathname } = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -30,7 +29,6 @@ export function Nav() {
 
   useEffect(() => {
     setSolutionsOpen(false);
-    setMobileOpen(false);
   }, [pathname]);
 
   return (
@@ -38,6 +36,7 @@ export function Nav() {
       className={`fixed top-0 w-full z-50 border-b border-outline-variant/20 bg-surface/80 backdrop-blur-xl transition-all duration-300 ${
         scrolled ? "h-16 shadow-sm" : "h-20"
       }`}
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <nav className="flex justify-between items-center w-full px-page max-w-container mx-auto h-full">
         <Link to="/" className="flex items-center shrink-0">
@@ -133,66 +132,11 @@ export function Nav() {
           <button className="hidden lg:flex text-on-surface-variant hover:text-primary transition-colors" aria-label="Search">
             <Search size={20} />
           </button>
-          <button className="bg-primary text-on-primary px-6 py-3 rounded font-body font-semibold hover:bg-secondary transition-all active:scale-[0.98]">
+          <button className="hidden md:block bg-primary text-on-primary px-6 py-3 rounded font-body font-semibold hover:bg-secondary transition-all active:scale-[0.98]">
             Schedule Consultation
-          </button>
-          <button
-            className="md:hidden text-on-surface-variant"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </nav>
-
-      {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full max-h-[calc(100vh-5rem)] overflow-y-auto bg-surface border-b border-outline-variant/20 p-6 flex flex-col gap-2 shadow-xl">
-          <Link
-            to="/"
-            onClick={() => setMobileOpen(false)}
-            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
-          >
-            Home
-          </Link>
-
-          <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant mt-4 mb-1">
-            Solutions
-          </span>
-          {SOLUTIONS.map((solution) => (
-            <Link
-              key={solution.slug}
-              to={solution.path}
-              onClick={() => setMobileOpen(false)}
-              className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
-            >
-              {solution.navLabel}
-            </Link>
-          ))}
-
-          <Link
-            to="/industries"
-            onClick={() => setMobileOpen(false)}
-            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg mt-4 pt-4 border-t border-outline-variant/20"
-          >
-            Industries
-          </Link>
-          <Link
-            to="/about"
-            onClick={() => setMobileOpen(false)}
-            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
-          >
-            About
-          </Link>
-          <Link
-            to="/contact"
-            onClick={() => setMobileOpen(false)}
-            className="text-on-surface-variant hover:text-primary transition-colors font-body text-lg py-1"
-          >
-            Contact
-          </Link>
-        </div>
-      )}
     </header>
   );
 }
