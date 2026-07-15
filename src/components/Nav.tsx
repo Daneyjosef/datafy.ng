@@ -27,8 +27,8 @@ export function Nav() {
       }`}
     >
       <nav className="flex justify-between items-center w-full px-page max-w-container mx-auto h-full">
-        <Link to="/" className="font-display text-2xl font-bold tracking-tighter text-primary">
-          Datafy Technology
+        <Link to="/" className="flex items-center shrink-0">
+          <img src="/datafy-logo.png" alt="Datafy Technology" className="h-8 w-auto" />
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

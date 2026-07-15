@@ -5,7 +5,10 @@ export function Footer() {
     <footer className="bg-primary-container text-on-primary py-20 border-t border-primary/10">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter px-page max-w-container mx-auto">
         <div className="md:col-span-1">
-          <h2 className="font-display text-2xl font-bold tracking-tighter mb-6">Datafy Technology</h2>
+          <div className="flex items-center gap-2 mb-6">
+            <img src="/datafy-icon.png" alt="" className="h-7 w-auto" />
+            <h2 className="font-display text-2xl font-bold tracking-tighter">Datafy Technology</h2>
+          </div>
           <p className="text-on-primary-fixed-variant font-body mb-8">
             African Excellence, Global Impact. Engineering the future since 2018.
           </p>
