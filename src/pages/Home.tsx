@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { ADVANTAGES, PROCESS_STEPS, SOLUTIONS } from "../data/solutions";
 
-const HERO_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDbY4kJ8LrnevTRKgvPH9Ybcu2iDsvw0S4WsLvWRDhwcZbR6kSQXBW7dTRwj0cvVnqcFOjnbpywAfEcQPIvc6GyW1yzV4hbvz6Q5DcexW367haIBiXXOLxfJ3wmUX7s9kvxHjjj56T2gil9cGGRqno1eyr6E5j1WDkikFx-ZgXCj6-SHmtNUTNwAsB0l_bYxjxUnsf5IJp_HLuQtxPfERJewKWxP08xMOqX6boEZN691CAk2PrSxHtR";
+const HERO_IMAGE = "/hero-vision.webp";
 
 function Hero() {
   return (
