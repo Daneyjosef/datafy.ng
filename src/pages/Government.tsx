@@ -8,8 +8,10 @@ import {
   Globe,
   Landmark,
   Map,
+  Rocket,
   ShieldCheck,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 const COMMAND_CENTER_IMAGE =
@@ -34,10 +36,13 @@ function Hero() {
             systems, we bridge the gap between policy and technology.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
-            <button className="bg-primary-container text-on-primary px-8 py-4 rounded-lg font-semibold flex items-center gap-2 group">
-              Explore e-Gov Solutions
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-            </button>
+            <Link
+              to="/signup/government"
+              className="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-all"
+            >
+              <Rocket size={18} />
+              Get Early Access
+            </Link>
             <button className="border border-outline-variant px-8 py-4 rounded-lg font-semibold text-primary hover:bg-surface-container-low transition-colors">
               Security Framework
             </button>

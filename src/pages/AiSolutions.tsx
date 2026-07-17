@@ -5,9 +5,11 @@ import {
   Cpu,
   FileText,
   Headphones,
+  Rocket,
   ShieldCheck,
   Zap,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { NeuralNetworkCanvas } from "../components/NeuralNetworkCanvas";
 import { SOLUTIONS } from "../data/solutions";
@@ -33,9 +35,13 @@ function Hero() {
             smarter business decisions with our bespoke neural frameworks.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-primary text-on-primary px-8 py-4 rounded font-display text-lg hover:bg-secondary transition-colors">
-              Deploy AI Solutions
-            </button>
+            <Link
+              to="/signup/ai-solutions"
+              className="bg-secondary text-on-secondary px-8 py-4 rounded font-display text-lg hover:opacity-90 transition-all inline-flex items-center gap-2"
+            >
+              <Rocket size={18} />
+              Get Early Access
+            </Link>
             <button className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">
               View Case Studies
             </button>
@@ -286,9 +292,21 @@ function CTASection() {
         <p className="font-body text-lg text-on-surface-variant mb-12">
           Connect with our solution architects to build a custom AI ecosystem for your enterprise.
         </p>
-        <button className="bg-primary-container text-on-primary px-12 py-6 rounded font-display text-xl hover:bg-primary transition-all shadow-xl active:scale-95">
-          Consult Our Engineers
-        </button>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link
+            to="/signup/ai-solutions"
+            className="bg-primary-container text-on-primary px-12 py-6 rounded font-display text-xl hover:bg-primary transition-all shadow-xl active:scale-95 inline-flex items-center gap-2"
+          >
+            <Rocket size={20} />
+            Join the Waitlist
+          </Link>
+          <Link
+            to="/contact"
+            className="border border-outline-variant px-12 py-6 rounded font-display text-xl hover:bg-surface-container-low transition-all"
+          >
+            Consult Our Engineers
+          </Link>
+        </div>
       </div>
     </section>
   );

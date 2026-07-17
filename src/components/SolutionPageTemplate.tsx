@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import type { Solution } from "../data/solutions";
@@ -24,11 +24,15 @@ function Hero({ solution }: { solution: Solution }) {
             </p>
           )}
           <div className="flex flex-wrap gap-4 mt-8">
-            <button className="bg-primary text-on-primary px-8 py-4 rounded font-display text-lg hover:bg-secondary transition-colors">
-              Book a Free Consultation
-            </button>
+            <Link
+              to={`/signup/${solution.slug}`}
+              className="bg-secondary text-on-secondary px-8 py-4 rounded font-display text-lg hover:opacity-90 transition-all inline-flex items-center gap-2"
+            >
+              <Rocket size={18} />
+              Get Early Access
+            </Link>
             <button className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">
-              View Case Studies
+              Book a Free Consultation
             </button>
           </div>
         </div>
@@ -66,7 +70,7 @@ function ServicesGrid({ solution }: { solution: Solution }) {
   );
 }
 
-function CTA() {
+function CTA({ solution }: { solution: Solution }) {
   return (
     <section className="py-32 px-page max-w-container mx-auto text-center reveal">
       <div className="max-w-3xl mx-auto space-y-8">
@@ -74,17 +78,21 @@ function CTA() {
           Ready to transform your business?
         </h2>
         <p className="font-body text-lg text-on-surface-variant">
-          Contact us today for a free consultation.
+          Contact us today for a free consultation, or join the waitlist for the {solution.navLabel}{" "}
+          software we're building.
         </p>
         <div className="flex flex-wrap justify-center gap-4 pt-2">
-          <button className="bg-primary text-on-primary px-10 py-4 rounded font-display text-lg hover:bg-secondary transition-colors">
-            Contact Us
-          </button>
           <Link
-            to="/"
+            to={`/signup/${solution.slug}`}
+            className="bg-primary text-on-primary px-10 py-4 rounded font-display text-lg hover:bg-secondary transition-colors"
+          >
+            Join the Waitlist
+          </Link>
+          <Link
+            to="/contact"
             className="border border-outline-variant px-10 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors inline-flex items-center gap-2"
           >
-            All Solutions <ArrowRight size={18} />
+            Contact Us <ArrowRight size={18} />
           </Link>
         </div>
       </div>
@@ -99,7 +107,7 @@ export function SolutionPageTemplate({ solution }: { solution: Solution }) {
     <>
       <Hero solution={solution} />
       <ServicesGrid solution={solution} />
-      <CTA />
+      <CTA solution={solution} />
     </>
   );
 }

@@ -15,6 +15,7 @@ import { FinTech } from "./pages/FinTech";
 import { SmartEnergy } from "./pages/SmartEnergy";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
+import { Signup } from "./pages/Signup";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,6 +44,8 @@ function App() {
           <Route path="/industries" element={<Industries />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup/:slug" element={<Signup />} />
         </Routes>
       </main>
       <Footer />
