@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { ArrowRight, CheckCircle2, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
@@ -100,13 +101,20 @@ function CTA({ solution }: { solution: Solution }) {
   );
 }
 
-export function SolutionPageTemplate({ solution }: { solution: Solution }) {
+export function SolutionPageTemplate({
+  solution,
+  children,
+}: {
+  solution: Solution;
+  children?: ReactNode;
+}) {
   useScrollReveal();
 
   return (
     <>
       <Hero solution={solution} />
       <ServicesGrid solution={solution} />
+      {children}
       <CTA solution={solution} />
     </>
   );

@@ -5,6 +5,7 @@ import {
   Cloud,
   Compass,
   Landmark,
+  Server,
   ShieldCheck,
   Sun,
   type LucideIcon,
@@ -185,6 +186,27 @@ export const SOLUTIONS: Solution[] = [
       "Energy Optimization Systems",
     ],
     poweredBy: "In partnership with Sumex Energy.",
+  },
+  {
+    slug: "domains-hosting",
+    path: "/domains-hosting",
+    navLabel: "Domains & Web Hosting",
+    icon: Server,
+    eyebrow: "Own Your Online Presence",
+    title: "Domain Names & Hosting Built for",
+    highlight: "Nigerian Businesses.",
+    description:
+      "Register your .ng or global domain and host your website, email, and applications on fast, reliable infrastructure—backed by local support.",
+    services: [
+      "Domain Registration (.ng, .com.ng, .com & more)",
+      "Shared Web Hosting",
+      "VPS & Dedicated Servers",
+      "Business Email Hosting",
+      "SSL Certificates",
+      "Domain Transfers & Renewals",
+      "Website Migration",
+      "Bulk Domain Management for Resellers",
+    ],
   },
 ];
 

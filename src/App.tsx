@@ -13,6 +13,7 @@ import { Cybersecurity } from "./pages/Cybersecurity";
 import { DigitalTransformation } from "./pages/DigitalTransformation";
 import { FinTech } from "./pages/FinTech";
 import { SmartEnergy } from "./pages/SmartEnergy";
+import { DomainsHosting } from "./pages/DomainsHosting";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Signup } from "./pages/Signup";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/government" element={<Government />} />
           <Route path="/fintech" element={<FinTech />} />
           <Route path="/smart-energy" element={<SmartEnergy />} />
+          <Route path="/domains-hosting" element={<DomainsHosting />} />
           <Route path="/industries" element={<Industries />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

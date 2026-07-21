@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { CheckCircle2, Rocket } from "lucide-react";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { SOLUTIONS } from "../data/solutions";
@@ -8,9 +8,14 @@ export function Signup() {
   useScrollReveal();
 
   const { slug } = useParams<{ slug?: string }>();
+  const [searchParams] = useSearchParams();
+  const domainParam = searchParams.get("domain");
   const matchedSolution = SOLUTIONS.find((s) => s.slug === slug);
 
   const [selectedSlug, setSelectedSlug] = useState(matchedSolution?.slug ?? "");
+  const [message, setMessage] = useState(
+    domainParam ? `I'm interested in registering ${domainParam}.` : ""
+  );
   const [submitted, setSubmitted] = useState(false);
 
   const selectedSolution = SOLUTIONS.find((s) => s.slug === selectedSlug);
@@ -153,6 +158,8 @@ export function Signup() {
               <textarea
                 id="message"
                 rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors resize-none"
                 placeholder="Tell us a bit about your use case..."
               />
