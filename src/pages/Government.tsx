@@ -8,7 +8,6 @@ import {
   Globe,
   Landmark,
   Map,
-  Rocket,
   ShieldCheck,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -32,34 +31,17 @@ function Hero() {
           </h1>
           <p className="font-body text-lg lg:text-xl text-on-surface-variant max-w-2xl">
             Datafy supports public institutions with secure, scalable, and resilient digital
-            infrastructure designed for national complexity. From citizen identity to automated tax
-            systems, we bridge the gap between policy and technology.
+            infrastructure. From citizen services to records management, we help teams connect
+            policy goals with practical digital systems.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
             <Link
-              to="/signup/government"
+              to="/contact?service=Government%20Digital%20Solutions"
               className="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-all"
             >
-              <Rocket size={18} />
-              Get Early Access
+              Discuss a Project
             </Link>
-            <button className="border border-outline-variant px-8 py-4 rounded-lg font-semibold text-primary hover:bg-surface-container-low transition-colors">
-              Security Framework
-            </button>
-          </div>
-          <div className="pt-12 grid grid-cols-3 gap-8 border-t border-outline-variant/30">
-            <div>
-              <div className="font-display text-3xl font-semibold text-primary">99.9%</div>
-              <div className="font-label text-xs text-on-surface-variant uppercase">Uptime Mandate</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-semibold text-primary">ISO</div>
-              <div className="font-label text-xs text-on-surface-variant uppercase">27001 Certified</div>
-            </div>
-            <div>
-              <div className="font-display text-3xl font-semibold text-primary">15M+</div>
-              <div className="font-label text-xs text-on-surface-variant uppercase">Verified Citizens</div>
-            </div>
+            <Link to="/contact" className="border border-outline-variant px-8 py-4 rounded-lg font-semibold text-primary hover:bg-surface-container-low transition-colors">Contact Our Team</Link>
           </div>
         </div>
         <div className="lg:col-span-5 relative lg:block hidden">
@@ -109,15 +91,13 @@ function SolutionsGrid() {
               Core Infrastructure
             </span>
             <h3 className="font-display text-3xl font-semibold leading-tight max-w-lg">
-              Unified e-Government Platforms for Seamless Agency Collaboration.
+              Connected Digital Services for Public Institutions.
             </h3>
             <p className="text-on-primary/70 max-w-md">
-              Our flagship platform centralizes all ministerial data, allowing for real-time policy
-              impact analysis and inter-departmental resource optimization.
+              We can help teams plan secure ways to share information, simplify service delivery,
+              and improve visibility across departments.
             </p>
-            <button className="flex items-center gap-2 font-semibold text-primary-fixed hover:gap-4 transition-all">
-              View Case Studies <ArrowRight size={20} />
-            </button>
+            <Link to="/contact" className="flex items-center gap-2 font-semibold text-primary-fixed hover:gap-4 transition-all">Discuss this approach <ArrowRight size={20} /></Link>
           </div>
         </div>
 
@@ -125,8 +105,7 @@ function SolutionsGrid() {
           <Landmark className="text-secondary mb-6" size={40} />
           <h3 className="text-2xl font-bold text-primary mb-4">Tax Management</h3>
           <p className="text-on-surface-variant mb-auto">
-            Automated revenue collection and compliance auditing designed for complex national
-            fiscal structures.
+            Digital tools that can support revenue workflows, reporting, and accountable records.
           </p>
           <hr className="my-6 border-outline-variant/20" />
           <div className="flex justify-between items-center">
@@ -139,8 +118,7 @@ function SolutionsGrid() {
           <Fingerprint className="text-secondary mb-6" size={40} />
           <h3 className="text-2xl font-bold text-primary mb-4">Identity Management</h3>
           <p className="text-on-surface-variant">
-            Biometric-first digital IDs that serve as the foundation for modern financial inclusion
-            and public services.
+            Identity and access workflows designed around the needs of each service and its users.
           </p>
         </div>
 
@@ -148,8 +126,7 @@ function SolutionsGrid() {
           <Globe className="text-secondary mb-6" size={40} />
           <h3 className="text-2xl font-bold text-primary mb-4">Citizen Portals</h3>
           <p className="text-on-surface-variant">
-            Mobile-first interfaces that put government services in the hands of millions,
-            increasing accessibility and trust.
+            Accessible interfaces that make public services easier to find and use on mobile devices.
           </p>
         </div>
 
@@ -186,9 +163,9 @@ function SolutionsGrid() {
 
 function SecuritySection() {
   const items = [
-    "Sovereign Data Residency Compliance",
-    "Real-time SOC/SIEM Monitoring",
-    "Blockchain-verified Audit Trails",
+    "Data access and residency requirements",
+    "Monitoring and incident response planning",
+    "Auditable records and permissions",
   ];
 
   return (
@@ -202,9 +179,8 @@ function SecuritySection() {
             Uncompromising Security Architecture.
           </h2>
           <p className="font-body text-lg text-on-primary/70">
-            Our sovereign cloud deployments ensure that national data remains under domestic
-            jurisdiction. We employ military-grade encryption and zero-trust protocols across every
-            layer of the digital stack.
+            Public systems need security and privacy requirements defined from the start. We work
+            with each organization to plan appropriate access controls, data handling, and monitoring.
           </p>
           <ul className="space-y-4">
             {items.map((item) => (
@@ -234,16 +210,13 @@ function CTA() {
           Ready to Transform National Infrastructure?
         </h2>
         <p className="font-body text-lg text-on-surface-variant">
-          Partner with Africa's leading government technology specialists. We provide the expertise
-          and tools required for large-scale institutional modernization.
+          Tell us about the service or system you need to improve, and we can discuss a practical
+          approach with your team.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <button className="bg-primary-container text-on-primary px-10 py-5 rounded-lg font-bold text-lg hover:shadow-xl transition-all">
+          <Link to="/contact?service=Government%20Digital%20Solutions" className="bg-primary-container text-on-primary px-10 py-5 rounded-lg font-bold text-lg hover:shadow-xl transition-all">
             Request Strategy Session
-          </button>
-          <button className="bg-surface-container-high text-primary px-10 py-5 rounded-lg font-bold text-lg hover:bg-surface-container-highest transition-all">
-            Download Whitepaper
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -37,13 +37,17 @@ function Story() {
               as we extend that reach further.
             </p>
             <p>
+              Datafy Pay is one of the products we have built. It brings everyday payments together
+              in one account. <a href="https://pay.datafy.ng/" className="font-semibold text-secondary underline underline-offset-4">Explore Datafy Pay</a>.
+            </p>
+            <p>
               We envision a future where African businesses compete globally through intelligent
               technology—helping organizations innovate, scale, and create lasting impact.
             </p>
           </div>
         </div>
-        <div className="lg:col-span-7 grid grid-cols-2 gap-4">
-          <div className="bg-primary-container p-12 rounded-2xl text-on-primary flex flex-col justify-between aspect-square">
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="bg-primary-container p-8 lg:p-12 rounded-2xl text-on-primary flex flex-col justify-between min-h-64 sm:aspect-square">
             <Eye className="w-10 h-10 text-secondary-fixed" />
             <div>
               <h3 className="font-display text-2xl font-semibold mb-2">Our Vision</h3>
@@ -53,7 +57,7 @@ function Story() {
               </p>
             </div>
           </div>
-          <div className="bg-secondary p-12 rounded-2xl text-on-secondary flex flex-col justify-between aspect-square transform translate-y-12">
+          <div className="bg-secondary p-8 lg:p-12 rounded-2xl text-on-secondary flex flex-col justify-between min-h-64 sm:aspect-square sm:translate-y-12">
             <Rocket className="w-10 h-10 text-on-secondary" />
             <div>
               <h3 className="font-display text-2xl font-semibold mb-2">Our Mission</h3>

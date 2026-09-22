@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowRight, CheckCircle2, Rocket } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import type { Solution } from "../data/solutions";
@@ -26,15 +26,14 @@ function Hero({ solution }: { solution: Solution }) {
           )}
           <div className="flex flex-wrap gap-4 mt-8">
             <Link
-              to={`/signup/${solution.slug}`}
+              to={`/contact?service=${encodeURIComponent(solution.navLabel)}`}
               className="bg-secondary text-on-secondary px-8 py-4 rounded font-display text-lg hover:opacity-90 transition-all inline-flex items-center gap-2"
             >
-              <Rocket size={18} />
-              Get Early Access
+              Discuss your project
             </Link>
-            <button className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">
+            <Link to="/contact" className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">
               Book a Free Consultation
-            </button>
+            </Link>
           </div>
         </div>
         <div className="lg:col-span-5 relative hidden lg:flex items-center justify-center">
@@ -79,15 +78,14 @@ function CTA({ solution }: { solution: Solution }) {
           Ready to transform your business?
         </h2>
         <p className="font-body text-lg text-on-surface-variant">
-          Contact us today for a free consultation, or join the waitlist for the {solution.navLabel}{" "}
-          software we're building.
+          Tell us what you need, and we will discuss a practical next step for your project.
         </p>
         <div className="flex flex-wrap justify-center gap-4 pt-2">
           <Link
-            to={`/signup/${solution.slug}`}
+            to={`/contact?service=${encodeURIComponent(solution.navLabel)}`}
             className="bg-primary text-on-primary px-10 py-4 rounded font-display text-lg hover:bg-secondary transition-colors"
           >
-            Join the Waitlist
+            Discuss a Project
           </Link>
           <Link
             to="/contact"

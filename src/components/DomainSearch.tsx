@@ -117,10 +117,10 @@ export function DomainSearch() {
                 </span>
                 {result.available ? (
                   <Link
-                    to={`/signup/domains-hosting?domain=${encodeURIComponent(result.domain)}`}
+                    to={`/contact?domain=${encodeURIComponent(result.domain)}`}
                     className="bg-secondary text-on-secondary px-5 py-2.5 rounded font-body font-semibold text-sm hover:opacity-90 transition-all whitespace-nowrap"
                   >
-                    Join Waitlist
+                    Enquire
                   </Link>
                 ) : (
                   <span className="text-on-surface-variant text-sm px-5 py-2.5">—</span>

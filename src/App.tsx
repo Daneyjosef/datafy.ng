@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
@@ -16,7 +16,6 @@ import { SmartEnergy } from "./pages/SmartEnergy";
 import { DomainsHosting } from "./pages/DomainsHosting";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
-import { Signup } from "./pages/Signup";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,7 +30,7 @@ function App() {
     <div className="min-h-screen bg-surface text-on-surface font-body">
       <ScrollToTop />
       <Nav />
-      <main className="pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
+      <main className="pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/ai-solutions" element={<AiSolutions />} />
@@ -46,8 +45,9 @@ function App() {
           <Route path="/industries" element={<Industries />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signup/:slug" element={<Signup />} />
+          <Route path="/signup" element={<Navigate to="/contact" replace />} />
+          <Route path="/signup/fintech" element={<Navigate to="/fintech" replace />} />
+          <Route path="/signup/:slug" element={<Navigate to="/contact" replace />} />
         </Routes>
       </main>
       <Footer />

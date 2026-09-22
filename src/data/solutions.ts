@@ -171,12 +171,12 @@ export const SOLUTIONS: Solution[] = [
   {
     slug: "fintech",
     path: "/fintech",
-    navLabel: "FinTech Solutions",
+    navLabel: "Payments & FinTech",
     icon: Banknote,
     eyebrow: "Payments Infrastructure",
     title: "Secure Payment Infrastructure for",
     highlight: "Africa.",
-    description: "Building secure payment infrastructure for Africa.",
+    description: "Payment products and systems designed for everyday use and business needs.",
     services: [
       "Payment Platforms",
       "Wallet Solutions",
@@ -186,7 +186,6 @@ export const SOLUTIONS: Solution[] = [
       "Agency Banking Platforms",
       "Digital Banking Solutions",
     ],
-    poweredBy: "Powered by the innovation behind Pennycount.",
   },
   {
     slug: "smart-energy",

@@ -13,6 +13,7 @@ import {
   TrendingUp,
   type LucideIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 
 type Industry = {
@@ -21,7 +22,6 @@ type Industry = {
   description: string;
   features: string[];
   image: string;
-  linkText: string;
 };
 
 const INDUSTRIES: Industry[] = [
@@ -33,7 +33,6 @@ const INDUSTRIES: Industry[] = [
     features: ["Compliance & Regulatory Tech", "Fraud Detection AI"],
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBZsGD8-w0fDwKNBDniiXGvgTEcJ8OhoGeawzInN735B6m6V-pWJeu590QrY2I0FINwLrjBZNR2v6I6eiM3VQpp3dC7NRIuHqwcFEADBxU40S46vjLmxFdtg6btIVvIviw4kMgcJ56Jlr89xk7ZkIdZm0yti9vWGY3qn3-DGgbzpP8SkVJT13sgjwS6RPuDGw2Z2lmj0hQ9WK4DcbHU_vRxrGqrIE7EeVz55KGF5y0MB6Hm1odQ0ZXF",
-    linkText: "Explore Financial",
   },
   {
     category: "HealthTech",
@@ -43,7 +42,6 @@ const INDUSTRIES: Industry[] = [
     features: ["Health Data Interoperability", "Remote Patient Monitoring"],
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCVVLuz5_OWgF3jj4PVbeeo_uR5HJxzaSHb7kLNlssoWz0x7kctMRjPORO47S4ujUzA49Yi4vKsMY1GrA8lJSw5uPF2clsI5gTB1izazmKHn6uN4i9oO61WBhBIycESg0G7L4mwTa9AWWs_oiRKCxVqIm82avdd7RZG-V75LWV6X7mAYkkoMTNmZFkvbC9L_SCHDmNHOW2xZpDpH3wtREJO1pyc7Z3wn-Qa5x-fHJ2wr7YpCG_2bAft",
-    linkText: "Explore Health",
   },
   {
     category: "EdTech",
@@ -53,7 +51,6 @@ const INDUSTRIES: Industry[] = [
     features: ["Adaptive Learning Platforms", "Institutional Resource Planning"],
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCySYN7UbeAa5OmAeq3bUp_j0vMNrKxGEeFeur_CR29CMnMF7KAvNl3VaDMKHzZ6aoc-0DDxycperMRohIVMbUgrc3FdvCSidvVdjb4MlmAnj315NOI73V-D0N6jBMefDSDpsUVLB1YzBg8NxX8JrTVrv_1EesBX6gZWDTgXC_emxOFUEqlrOa6xwLYmTxdHuKdagUlYZ_c8k41a4JT7kjAiIu4JMHGfWdBTQxbvfVZmSp5R974gmO5",
-    linkText: "Explore Education",
   },
   {
     category: "Supply Chain",
@@ -63,7 +60,6 @@ const INDUSTRIES: Industry[] = [
     features: ["Real-time Fleet Tracking", "Warehouse Automation"],
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDab0CFqpD-ZjWdYYf_8qwqO2oewOONZoaJsqajA4HlrAof5TI-xkQOxlCWUxT1ZmoUA7hZYH4u_3Q1wnZHM98jYJndaPOOXy3VKWWCm3rd2oyGIi4Ss_SdaAs-t_dZlF2juHhsNAqUfbNTFJYcNGk9J9Rg-Ewo4RAFWVE98sbgjw5gImUAI991yqRa9AiWmf4rm4Ila8tbFHvhtQ-w5q0oESvxTNyotaBaE1w4-eWNEoPjCGbHXB_J",
-    linkText: "Explore Logistics",
   },
   {
     category: "Energy & Natural Resources",
@@ -73,7 +69,6 @@ const INDUSTRIES: Industry[] = [
     features: ["Digital Twin Modeling", "HSE Data Management"],
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAr-rWI1qUKdd-25y_KBPM0gsEORpeyiR0Kj_4DOuBF7naxDM5DXeKu-CikFuIqHSKWX1x2DXt4NBj-xYCg6YzDm0SVi35sToujiHkJEPLzteJyXlPKJkGOhzcug1QjnDQT_Gm5_xIVSAelFLW9HsdveyaFUAf5jjsHrGrRaibFkYC0ARqu1_UgBOGvZGgcElBxlA_L0_3aNCVO8PA33AikgkmcsP3ynCEOG9AUJhVGgp0W5n64Lnz4",
-    linkText: "Explore Energy",
   },
   {
     category: "Community & Non-Profit",
@@ -83,7 +78,6 @@ const INDUSTRIES: Industry[] = [
     features: ["Donor Management Systems", "Global Content Streaming"],
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCqu1f7PIDmcp-zhYps6ntXO6uX_cPkpZ2g9_4GLZ9Uc3VclOSeCwHNTHZJkMyS9SAm8uxzdTqMfLLuxVJaqOswtV9mhVbOriUrEyhrUxe_Qgra63FygVewwXLYZ-JXbYJCLGOiGJ2eSGq1iQVXs7D0wZaR3yV8KOGDD8a7sS5DAN1xcSTOB2P_-JRu1GR6Cc0NnEsxmzVPn8IMKTrRGILmHrxv7xs6TE-iB5_sEzliiPhlt4hd1arX",
-    linkText: "Explore Community",
   },
 ];
 
@@ -97,9 +91,6 @@ const ADDITIONAL_INDUSTRIES: AdditionalIndustry[] = [
   { title: "Real Estate", icon: Building2 },
   { title: "Retail & E-commerce", icon: Store },
 ];
-
-const FEATURED_TRANSFORMATION_IMAGE =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuD2zmfYxJntajI_pcFFd0sEiracOt5pPc33v_UekStqGU1a4UvkK38wTEY9e3PpYtQutQWBSWI0q9vL4NzCChWcgYtfyQSdLJfvIuzYpYoI7jJXDwE6PMY6Ql68NUF7BzitGJhnYUlMWeyCM9hnxufa_iGutnWLawr6ddDSaYGhSAsGDweM3PMW4lvPcAOIMAx3S6HVJ249sL5cORt0QnbZYpG24PT9yEBvjNVQXo_eLknlXF95ZDtm";
 
 function Hero() {
   return (
@@ -118,12 +109,10 @@ function Hero() {
             in the global digital economy.
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-primary text-white font-body px-8 py-4 rounded-lg flex items-center gap-2 hover:bg-secondary transition-all">
+            <Link to="/contact" className="bg-primary text-white font-body px-8 py-4 rounded-lg flex items-center gap-2 hover:bg-secondary transition-all">
               Partner With Us <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="border border-outline-variant text-primary font-body px-8 py-4 rounded-lg hover:bg-surface-container-low transition-all">
-              View Case Studies
-            </button>
+            </Link>
+            <Link to="/fintech" className="border border-outline-variant text-primary font-body px-8 py-4 rounded-lg hover:bg-surface-container-low transition-all">Explore Datafy Pay</Link>
           </div>
         </div>
         <div className="relative h-[500px] rounded-xl overflow-hidden shadow-xl bg-surface-container-high/20">
@@ -137,9 +126,9 @@ function Hero() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent flex items-end p-8 pointer-events-none">
             <div className="glass-card p-6 rounded-lg w-full">
-              <p className="font-label text-xs uppercase text-secondary mb-2">Live Transformation</p>
+              <p className="font-label text-xs uppercase text-secondary mb-2">Focus area</p>
               <p className="font-display text-2xl font-semibold text-on-primary-fixed">
-                Digitalizing Pan-African Logistics
+                Digital tools for logistics
               </p>
             </div>
           </div>
@@ -149,7 +138,7 @@ function Hero() {
   );
 }
 
-function IndustryCard({ title, category, description, features, image, linkText }: Industry) {
+function IndustryCard({ title, category, description, features, image }: Industry) {
   return (
     <div className="group relative bg-surface-white border border-outline-variant/10 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
       <div
@@ -169,9 +158,9 @@ function IndustryCard({ title, category, description, features, image, linkText 
             </li>
           ))}
         </ul>
-        <a className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all" href="#">
-          {linkText} <ChevronRight className="w-4 h-4" />
-        </a>
+        <Link className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all" to={`/contact?industry=${encodeURIComponent(title)}`}>
+          Discuss {title} <ChevronRight className="w-4 h-4" />
+        </Link>
       </div>
     </div>
   );
@@ -184,8 +173,7 @@ function ExpertiseSection() {
         <div className="mb-16">
           <h2 className="font-display text-4xl lg:text-5xl font-semibold mb-4">Domain Expertise</h2>
           <p className="font-body text-on-surface-variant max-w-2xl">
-            Six specialized divisions focused on unique regulatory environments, operational
-            hurdles, and growth opportunities within the global landscape.
+            Explore the types of challenges our technology services can address across these sectors.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
@@ -242,11 +230,11 @@ function GlobalStandards() {
               Measurable Value
             </span>
             <h3 className="font-display text-3xl font-semibold text-white mb-6">
-              40% Average Increase in Operational Efficiency
+              Better systems for day-to-day work
             </h3>
             <p className="text-on-primary-fixed-variant font-body max-w-lg">
-              Through precision data engineering and cloud native transitions, we help enterprises
-              strip away legacy friction and focus on their core mission.
+              We help teams identify slow processes, connect the right tools, and make their work
+              easier to manage and improve.
             </p>
           </div>
         </div>
@@ -264,7 +252,7 @@ function GlobalStandards() {
           <div>
             <h3 className="font-display text-2xl font-semibold mb-2">Global Standards</h3>
             <p className="text-on-surface-variant font-body">
-              ISO-compliant security protocols baked into every line of code.
+              Security requirements considered from planning through delivery.
             </p>
           </div>
           <div className="flex items-center gap-4 border-t border-outline-variant/20 pt-6 mt-6">
@@ -273,23 +261,19 @@ function GlobalStandards() {
           </div>
         </div>
         <div className="md:col-span-4 lg:col-span-8 group relative rounded-xl overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000"
-            style={{ backgroundImage: `url('${FEATURED_TRANSFORMATION_IMAGE}')` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-container via-primary to-secondary/70" />
           <div className="relative z-10 h-full p-12 flex flex-col justify-center max-w-md">
             <span className="font-label text-xs uppercase text-secondary mb-2">
-              Featured Transformation
+              Live Datafy Product
             </span>
             <h3 className="font-display text-2xl font-semibold text-white mb-4">
-              The Nairobi Financial Hub Evolution
+              Datafy Pay: everyday payments in one place
             </h3>
             <p className="text-white/80 font-body mb-6">
-              How a regional leader transitioned to a serverless ecosystem in 12 months.
+              See our live product for bills, airtime, transfers, and supported digital assets.
             </p>
-            <a className="text-secondary-fixed font-bold flex items-center gap-2" href="#">
-              Read Case Study <ArrowRight className="w-4 h-4" />
+            <a className="text-secondary-fixed font-bold flex items-center gap-2" href="https://pay.datafy.ng/">
+              Explore Datafy Pay <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -311,9 +295,9 @@ function CTA() {
               Join the ranks of enterprises that have secured their future through strategic digital
               transformation with Datafy Technology.
             </p>
-            <button className="bg-secondary text-white font-display px-12 py-5 rounded-lg hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-all">
+            <Link to="/contact" className="inline-block bg-secondary text-white font-display px-12 py-5 rounded-lg hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-all">
               Request Industry Audit
-            </button>
+            </Link>
           </div>
         </div>
       </div>

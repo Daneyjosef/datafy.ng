@@ -107,6 +107,10 @@
   button {
     touch-action: manipulation;
   }
+  :focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 3px;
+  }
 }
 
 @layer utilities {
@@ -159,4 +163,10 @@
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-float { animation: none; }
 }

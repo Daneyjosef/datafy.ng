@@ -1,4 +1,5 @@
 import { Mail, MapPin } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { OFFICES } from "../data/offices";
 
@@ -23,10 +24,33 @@ function Hero() {
 }
 
 function ContactSection() {
+  const [searchParams] = useSearchParams();
+  const domain = searchParams.get("domain");
+  const service = searchParams.get("service");
+  const industry = searchParams.get("industry");
+  const initialMessage = domain
+    ? `I'm interested in registering ${domain}.`
+    : service
+      ? `I'm interested in ${service}.`
+      : industry
+        ? `I'd like to discuss a project in ${industry}.`
+        : "";
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const company = String(form.get("company") ?? "").trim();
+    const message = String(form.get("message") ?? "").trim();
+    const subject = encodeURIComponent(`Project enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company || "Not provided"}\n\nProject details:\n${message}`);
+    window.location.href = `mailto:hello@datafy.ng?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section className="py-16 px-page max-w-container mx-auto reveal">
       <div className="grid lg:grid-cols-12 gap-16">
-        <form className="lg:col-span-7 space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <form className="lg:col-span-7 space-y-6" onSubmit={handleSubmit}>
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">
@@ -34,6 +58,7 @@ function ContactSection() {
               </label>
               <input
                 id="name"
+                name="name"
                 type="text"
                 required
                 className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors"
@@ -46,6 +71,7 @@ function ContactSection() {
               </label>
               <input
                 id="email"
+                name="email"
                 type="email"
                 required
                 className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors"
@@ -58,7 +84,8 @@ function ContactSection() {
               Company
             </label>
             <input
-              id="company"
+                id="company"
+                name="company"
               type="text"
               className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors"
               placeholder="Your organization"
@@ -68,10 +95,12 @@ function ContactSection() {
             <label htmlFor="message" className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">
               How can we help?
             </label>
-            <textarea
-              id="message"
+              <textarea
+                id="message"
+                name="message"
               required
-              rows={5}
+                rows={5}
+                defaultValue={initialMessage}
               className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors resize-none"
               placeholder="Tell us about your project..."
             />
@@ -80,8 +109,9 @@ function ContactSection() {
             type="submit"
             className="bg-primary text-on-primary px-10 py-4 rounded font-display text-lg hover:bg-secondary transition-colors"
           >
-            Request a Free Consultation
+            Prepare consultation email
           </button>
+          <p className="text-sm text-on-surface-variant">This opens a draft in your email app. Please review and send it there.</p>
         </form>
 
         <div className="lg:col-span-5 space-y-10">
@@ -99,8 +129,8 @@ function ContactSection() {
           </div>
 
           <div>
-            <h3 className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-4">
-              Global Offices
+          <h3 className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-4">
+              Our locations
             </h3>
             <ul className="space-y-4">
               {OFFICES.map((office) => (

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Building2, Grip, Home, Phone, User, X } from "lucide-react";
+import { ArrowRight, Grip, Home, Phone, User, Wallet, X } from "lucide-react";
 import { SOLUTIONS } from "../data/solutions";
 
 const TABS = [
   { label: "Home", to: "/", icon: Home },
-  { label: "Industries", to: "/industries", icon: Building2 },
   { label: "About", to: "/about", icon: User },
   { label: "Contact", to: "/contact", icon: Phone },
 ] as const;
@@ -27,18 +26,28 @@ export function BottomTabBar() {
     };
   }, [sheetOpen]);
 
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSheetOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
   return (
     <>
       {sheetOpen && (
         <div
-          className="md:hidden fixed inset-0 z-40 bg-black/50"
+          className="lg:hidden fixed inset-0 z-40 bg-black/50"
           onClick={() => setSheetOpen(false)}
           aria-hidden="true"
         />
       )}
 
       <div
-        className={`md:hidden fixed inset-x-0 bottom-0 z-50 bg-surface-container-lowest rounded-t-2xl shadow-2xl transition-transform duration-300 ease-out ${
+        id="mobile-solutions"
+        inert={!sheetOpen}
+        className={`lg:hidden fixed inset-x-0 bottom-0 z-50 bg-surface-container-lowest rounded-t-2xl shadow-2xl transition-transform duration-300 ease-out ${
           sheetOpen ? "translate-y-0" : "translate-y-full"
         }`}
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 5rem)" }}
@@ -54,6 +63,9 @@ export function BottomTabBar() {
           </button>
         </div>
         <div className="max-h-[60vh] overflow-y-auto px-4 pb-4 grid gap-1">
+          <Link to="/industries" className="flex items-center justify-between px-4 py-3.5 rounded-lg text-on-surface hover:bg-surface-container-low">
+            Industries <ArrowRight size={18} />
+          </Link>
           {SOLUTIONS.map((solution) => {
             const Icon = solution.icon;
             return (
@@ -75,7 +87,7 @@ export function BottomTabBar() {
       </div>
 
       <nav
-        className="md:hidden fixed inset-x-0 bottom-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-outline-variant/20"
+        className="lg:hidden fixed inset-x-0 bottom-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-outline-variant/20"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <div className="grid grid-cols-5 h-16">
@@ -89,8 +101,15 @@ export function BottomTabBar() {
             <span className="font-label text-[10px]">{TABS[0].label}</span>
           </Link>
 
+          <a href="https://pay.datafy.ng/" className="flex flex-col items-center justify-center gap-1 touch-manipulation text-on-surface-variant">
+            <Wallet size={22} />
+            <span className="font-label text-[10px]">Pay</span>
+          </a>
+
           <button
             onClick={() => setSheetOpen((v) => !v)}
+            aria-expanded={sheetOpen}
+            aria-controls="mobile-solutions"
             className={`flex flex-col items-center justify-center gap-1 touch-manipulation ${
               isSolutionPage || sheetOpen ? "text-secondary" : "text-on-surface-variant"
             }`}

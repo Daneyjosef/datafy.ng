@@ -5,13 +5,10 @@ import {
   Cpu,
   FileText,
   Headphones,
-  Rocket,
-  ShieldCheck,
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "../hooks/useScrollReveal";
-import { NeuralNetworkCanvas } from "../components/NeuralNetworkCanvas";
 import { SOLUTIONS } from "../data/solutions";
 
 const AI_SERVICES = SOLUTIONS.find((s) => s.slug === "ai-solutions")!.services;
@@ -36,15 +33,12 @@ function Hero() {
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
-              to="/signup/ai-solutions"
+              to="/contact?service=Artificial%20Intelligence"
               className="bg-secondary text-on-secondary px-8 py-4 rounded font-display text-lg hover:opacity-90 transition-all inline-flex items-center gap-2"
             >
-              <Rocket size={18} />
-              Get Early Access
+              Discuss an AI project
             </Link>
-            <button className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">
-              View Case Studies
-            </button>
+            <Link to="/contact" className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">Talk to our team</Link>
           </div>
         </div>
         <div className="lg:col-span-5 relative">
@@ -52,12 +46,9 @@ function Hero() {
             <div className="glass-card p-8 rounded-xl shadow-xl w-64 absolute -top-4 -right-4 z-20">
               <div className="flex items-center gap-3 mb-4">
                 <BarChart3 className="text-secondary" size={20} />
-                <span className="font-label text-xs uppercase">Decision Engine</span>
+                <span className="font-label text-xs uppercase">Start with the use case</span>
               </div>
-              <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                <div className="bg-secondary h-full w-[85%]" />
-              </div>
-              <p className="text-[10px] mt-2 text-on-surface-variant">Efficiency Optimization: 85%</p>
+              <p className="text-xs text-on-surface-variant">Explore where automation can support your team.</p>
             </div>
           </div>
         </div>
@@ -87,8 +78,7 @@ function FeatureGrid() {
             </span>
             <h3 className="font-display text-3xl font-semibold mb-4">AI Business Automation</h3>
             <p className="font-body text-on-primary/80 max-w-md">
-              Eliminate operational bottlenecks by deploying intelligent agents that manage complex
-              workflows with 99.9% accuracy.
+              Reduce repetitive work with carefully designed automation and human review where it matters.
             </p>
           </div>
         </div>
@@ -98,7 +88,7 @@ function FeatureGrid() {
           <div>
             <h3 className="font-display text-2xl font-semibold mb-3">AI Customer Support</h3>
             <p className="font-body text-on-surface-variant">
-              Conversational interfaces that resolve issues instantly, anywhere in the world.
+              Give customers a helpful first response and make handoffs to your team clearer.
             </p>
           </div>
         </div>
@@ -109,7 +99,7 @@ function FeatureGrid() {
             <h3 className="font-display text-2xl font-semibold mb-3">Document Processing</h3>
           </div>
           <p className="font-body text-on-surface-variant">
-            Extract structured insights from millions of unstructured documents in seconds.
+            Organize information from documents so your team can search, review, and act on it.
           </p>
         </div>
 
@@ -118,7 +108,7 @@ function FeatureGrid() {
             <div>
               <h3 className="font-display text-2xl font-semibold mb-3">Predictive Analytics</h3>
               <p className="font-body text-on-surface-variant mb-6">
-                Anticipate market shifts and consumer behavior before they happen.
+                Use your data to explore patterns and plan with better context.
               </p>
             </div>
             <div className="flex gap-1 h-12 items-end">
@@ -132,7 +122,7 @@ function FeatureGrid() {
             <div>
               <h3 className="font-display text-2xl font-semibold mb-3">Generative AI Integration</h3>
               <p className="font-body opacity-80">
-                Custom LLM training and integration for specialized industry requirements.
+                Integrate generative AI into existing workflows with appropriate controls.
               </p>
             </div>
             <Zap className="absolute -bottom-4 -right-4 opacity-10" size={96} />
@@ -195,19 +185,7 @@ function StrategySection() {
             alt="Business executives reviewing data visualizations"
             src={STRATEGY_IMAGE}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-container/60 to-transparent" />
-          <div className="absolute bottom-10 left-10 right-10">
-            <div className="glass-card p-6 rounded-lg">
-              <p className="font-body text-on-primary-fixed italic">
-                "Datafy's strategy wasn't just about the technology; it was about reimagining our
-                entire service model through the lens of intelligence."
-              </p>
-              <div className="mt-4 border-t border-outline-variant/20 pt-4 flex justify-between items-center">
-                <span className="font-label text-xs uppercase">Global Head of Digital, FinTech Africa</span>
-                <ShieldCheck className="text-secondary" size={20} />
-              </div>
-            </div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-container/40 to-transparent" />
         </div>
         <div>
           <span className="font-label text-xs uppercase tracking-widest text-secondary mb-6 block">
@@ -217,9 +195,9 @@ function StrategySection() {
             Strategy & <span className="font-normal italic">Consulting</span>
           </h2>
           <p className="font-body text-on-surface-variant mb-12">
-            We don't just build models; we architect transformation. Our consulting team works with
-            C-suite leaders to define AI roadmaps that align with specific business outcomes,
-            ensuring every investment delivers measurable ROI.
+            We start with the task your team needs to improve, assess the data available, and define
+            how people will review the output. That gives each AI project a practical purpose and a
+            way to measure whether it helps.
           </p>
           <div className="space-y-8">
             {STRATEGY_STEPS.map((step) => (
@@ -234,49 +212,34 @@ function StrategySection() {
               </div>
             ))}
           </div>
-          <button className="mt-12 group flex items-center gap-3 font-display text-lg text-primary hover:text-secondary transition-colors">
+          <Link to="/contact?service=Artificial%20Intelligence" className="mt-12 group flex items-center gap-3 font-display text-lg text-primary hover:text-secondary transition-colors">
             Book a Strategy Session
             <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
-          </button>
+          </Link>
         </div>
       </div>
     </section>
   );
 }
 
-function StatsSection() {
+function PrinciplesSection() {
   return (
     <section className="py-24 px-page max-w-container mx-auto border-y border-outline-variant/10 reveal">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
-        <div className="max-w-xl">
-          <h2 className="font-display text-4xl lg:text-5xl font-semibold mb-6">Real-Time Precision</h2>
-          <p className="font-body text-on-surface-variant">
-            Our models operate at the edge of possibility, delivering sub-second latency and
-            unprecedented precision in high-stakes environments.
-          </p>
-        </div>
-        <div className="flex gap-12">
-          <div className="text-center">
-            <div className="font-display text-[64px] text-primary">0.4s</div>
-            <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant">
-              Latency
-            </span>
-          </div>
-          <div className="text-center">
-            <div className="font-display text-[64px] text-secondary">99%</div>
-            <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant">
-              Precision
-            </span>
-          </div>
-        </div>
+      <div className="max-w-2xl mb-12">
+        <h2 className="font-display text-4xl lg:text-5xl font-semibold mb-6">Designed for useful outcomes</h2>
+        <p className="font-body text-lg text-on-surface-variant">Each use case needs clear inputs, a way to assess its output, and a plan for the people who will use it.</p>
       </div>
-      <div className="w-full h-[400px] bg-surface-container rounded-xl relative overflow-hidden flex items-center justify-center">
-        <NeuralNetworkCanvas className="absolute inset-0 w-full h-full" />
-        <div className="glass-card px-10 py-8 rounded-full border border-white/20 relative z-10">
-          <span className="font-label text-xs tracking-widest text-primary uppercase">
-            Neural Network Status: Optimized
-          </span>
-        </div>
+      <div className="grid md:grid-cols-3 gap-6">
+        {[
+          ["A clear use case", "Choose a specific task and define what improvement would look like."],
+          ["Responsible data", "Check data quality, privacy needs, and where human review is required."],
+          ["Measured results", "Evaluate the solution with your team before expanding its use."],
+        ].map(([title, description]) => (
+          <div key={title} className="rounded-xl bg-surface-container-low p-8">
+            <h3 className="font-display text-xl font-semibold mb-3">{title}</h3>
+            <p className="text-on-surface-variant">{description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -294,11 +257,10 @@ function CTASection() {
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link
-            to="/signup/ai-solutions"
+            to="/contact?service=Artificial%20Intelligence"
             className="bg-primary-container text-on-primary px-12 py-6 rounded font-display text-xl hover:bg-primary transition-all shadow-xl active:scale-95 inline-flex items-center gap-2"
           >
-            <Rocket size={20} />
-            Join the Waitlist
+            Discuss Your Project
           </Link>
           <Link
             to="/contact"
@@ -321,7 +283,7 @@ export function AiSolutions() {
       <FeatureGrid />
       <AllServices />
       <StrategySection />
-      <StatsSection />
+      <PrinciplesSection />
       <CTASection />
     </>
   );

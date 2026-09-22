@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { SOLUTIONS } from "../data/solutions";
 
 export function Nav() {
@@ -31,6 +31,14 @@ export function Nav() {
     setSolutionsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSolutionsOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
   return (
     <header
       className={`fixed top-0 w-full z-50 border-b border-outline-variant/20 bg-surface/80 backdrop-blur-xl transition-all duration-300 ${
@@ -43,7 +51,7 @@ export function Nav() {
           <img src="/datafy-logo.png" alt="Datafy Technology" className="h-8 w-auto" />
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           <Link
             to="/"
             className={`font-body text-base tracking-tight transition-colors ${
@@ -55,9 +63,15 @@ export function Nav() {
             Home
           </Link>
 
+          <a href="https://pay.datafy.ng/" className="font-body text-base tracking-tight text-on-surface-variant hover:text-primary transition-colors">
+            Datafy Pay
+          </a>
+
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setSolutionsOpen((v) => !v)}
+              aria-expanded={solutionsOpen}
+              aria-controls="desktop-solutions"
               className={`flex items-center gap-1 font-body text-base tracking-tight transition-colors ${
                 isSolutionPage
                   ? "text-secondary font-semibold"
@@ -72,7 +86,7 @@ export function Nav() {
             </button>
 
             {solutionsOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-80 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-xl p-3 grid gap-1">
+              <div id="desktop-solutions" className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-80 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-xl p-3 grid gap-1">
                 {SOLUTIONS.map((solution) => {
                   const Icon = solution.icon;
                   return (
@@ -129,12 +143,9 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-6">
-          <button className="hidden lg:flex text-on-surface-variant hover:text-primary transition-colors" aria-label="Search">
-            <Search size={20} />
-          </button>
-          <button className="hidden md:block bg-primary text-on-primary px-6 py-3 rounded font-body font-semibold hover:bg-secondary transition-all active:scale-[0.98]">
-            Schedule Consultation
-          </button>
+          <Link to="/contact" className="hidden lg:block bg-primary text-on-primary px-6 py-3 rounded font-body font-semibold hover:bg-secondary transition-all active:scale-[0.98]">
+            Talk to us
+          </Link>
         </div>
       </nav>
     </header>
