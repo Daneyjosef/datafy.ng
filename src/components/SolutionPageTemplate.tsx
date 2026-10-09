@@ -7,14 +7,14 @@ import type { Solution } from "../data/solutions";
 function Hero({ solution }: { solution: Solution }) {
   const Icon = solution.icon;
   return (
-    <section className="relative overflow-hidden pt-44 pb-32 px-page max-w-container mx-auto reveal">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+    <section className="relative overflow-hidden pt-40 lg:pt-48 pb-24 lg:pb-32 reveal bg-white">
+      <div className="px-page max-w-container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         <div className="lg:col-span-7 z-10">
-          <span className="font-label text-xs uppercase tracking-widest text-secondary mb-6 block">
+          <span className="eyebrow mb-6 block">
             {solution.eyebrow}
           </span>
-          <h1 className="font-display text-[40px] leading-[1.1] lg:text-[56px] font-bold mb-8">
-            {solution.title} <span className="text-gradient">{solution.highlight}</span>
+          <h1 className="font-display text-[46px] leading-[.98] lg:text-[76px] tracking-[-0.06em] font-semibold mb-8">
+            {solution.title} <span className="text-secondary">{solution.highlight}</span>
           </h1>
           <p className="font-body text-lg lg:text-xl text-on-surface-variant max-w-xl mb-4">
             {solution.description}
@@ -27,18 +27,18 @@ function Hero({ solution }: { solution: Solution }) {
           <div className="flex flex-wrap gap-4 mt-8">
             <Link
               to={`/contact?service=${encodeURIComponent(solution.navLabel)}`}
-              className="bg-secondary text-on-secondary px-8 py-4 rounded font-display text-lg hover:opacity-90 transition-all inline-flex items-center gap-2"
+              className="button-primary"
             >
               Discuss your project
             </Link>
-            <Link to="/contact" className="border border-outline-variant px-8 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors">
+            <Link to="/contact" className="button-secondary">
               Book a Free Consultation
             </Link>
           </div>
         </div>
         <div className="lg:col-span-5 relative hidden lg:flex items-center justify-center">
-          <div className="w-full aspect-square max-w-sm rounded-full bg-surface-container-low flex items-center justify-center">
-            <Icon className="w-28 h-28 text-secondary" strokeWidth={1.25} />
+          <div className="w-full aspect-square max-w-md rounded-full bg-primary-container flex items-center justify-center relative after:absolute after:inset-[14%] after:rounded-full after:border after:border-primary-fixed/20">
+            <Icon className="w-28 h-28 text-primary-fixed-dim relative z-10" strokeWidth={1.1} />
           </div>
         </div>
       </div>
@@ -48,18 +48,18 @@ function Hero({ solution }: { solution: Solution }) {
 
 function ServicesGrid({ solution }: { solution: Solution }) {
   return (
-    <section className="py-24 px-page max-w-container mx-auto reveal">
+    <section className="section-block px-page max-w-container mx-auto reveal">
       <div className="mb-16 max-w-2xl">
-        <span className="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">
+        <span className="eyebrow mb-4 block">
           Services
         </span>
-        <h2 className="font-display text-4xl lg:text-5xl font-semibold">What We Deliver</h2>
+        <h2 className="display-section">What we deliver.</h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/40">
         {solution.services.map((service) => (
           <div
             key={service}
-            className="group flex items-center gap-4 border border-outline-variant/30 rounded-lg p-6 hover:border-secondary hover:bg-surface-container-low transition-all"
+            className="group flex items-center gap-4 border-r border-b border-outline-variant/40 p-7 min-h-28 hover:bg-white transition-all"
           >
             <CheckCircle2 className="text-secondary shrink-0" size={22} />
             <span className="font-body text-lg">{service}</span>
@@ -72,28 +72,29 @@ function ServicesGrid({ solution }: { solution: Solution }) {
 
 function CTA({ solution }: { solution: Solution }) {
   return (
-    <section className="py-32 px-page max-w-container mx-auto text-center reveal">
-      <div className="max-w-3xl mx-auto space-y-8">
-        <h2 className="font-display text-4xl lg:text-5xl font-semibold">
-          Ready to transform your business?
+    <section className="section-block px-page max-w-container mx-auto reveal">
+      <div className="contact-panel text-left">
+        <div><span className="eyebrow">Start a project</span><h2 className="display-section mt-5">
+          Move from idea to action.
         </h2>
+        </div><div>
         <p className="font-body text-lg text-on-surface-variant">
           Tell us what you need, and we will discuss a practical next step for your project.
         </p>
-        <div className="flex flex-wrap justify-center gap-4 pt-2">
+        <div className="flex flex-wrap gap-4 pt-2">
           <Link
             to={`/contact?service=${encodeURIComponent(solution.navLabel)}`}
-            className="bg-primary text-on-primary px-10 py-4 rounded font-display text-lg hover:bg-secondary transition-colors"
+            className="button-primary"
           >
             Discuss a Project
           </Link>
           <Link
             to="/contact"
-            className="border border-outline-variant px-10 py-4 rounded font-display text-lg hover:bg-surface-container-low transition-colors inline-flex items-center gap-2"
+            className="button-secondary"
           >
             Contact Us <ArrowRight size={18} />
           </Link>
-        </div>
+        </div></div>
       </div>
     </section>
   );

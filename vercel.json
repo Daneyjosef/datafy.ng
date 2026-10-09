@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/signup", "destination": "/contact", "permanent": true },
+    { "source": "/signup/fintech", "destination": "/fintech", "permanent": true },
+    { "source": "/signup/:slug", "destination": "/contact", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]

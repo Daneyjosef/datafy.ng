@@ -64,7 +64,7 @@ function Hero() {
               <div className="h-full w-4/5 bg-secondary rounded-full" />
             </div>
             <p className="text-xs text-on-surface-variant">
-              Real-time threat mitigation active across 12 ministry nodes.
+              Security requirements designed around each institution's operating context.
             </p>
           </div>
         </div>

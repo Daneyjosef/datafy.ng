@@ -41,7 +41,7 @@ export function Footer() {
         </div>
         <div>
           <h4 className="font-label text-xs uppercase tracking-widest opacity-60 mb-6">Contact</h4>
-          <a href="mailto:hello@datafy.ng" className="text-on-primary-fixed-variant hover:text-on-primary font-body transition-all">hello@datafy.ng</a>
+          <a href="mailto:info@datafy.ng" className="text-on-primary-fixed-variant hover:text-on-primary font-body transition-all">info@datafy.ng</a>
           <div className="mt-4"><Link to="/contact" className="text-on-primary-fixed-variant hover:text-on-primary font-body transition-all">Contact us</Link></div>
         </div>
       </div>

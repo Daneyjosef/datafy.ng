@@ -5,18 +5,17 @@ import { OFFICES } from "../data/offices";
 
 function Hero() {
   return (
-    <section className="pt-44 pb-16 px-page max-w-container mx-auto reveal">
+    <section className="pt-40 lg:pt-48 pb-16 px-page max-w-container mx-auto reveal">
       <div className="max-w-3xl">
-        <span className="font-label text-xs uppercase tracking-widest text-secondary mb-6 block">
-          Let's Build the Future Together
+        <span className="eyebrow mb-6 block">
+          Start a project
         </span>
-        <h1 className="font-display text-[40px] leading-[1.1] lg:text-[56px] font-bold mb-8">
-          Ready to transform your <span className="text-gradient">business?</span>
+        <h1 className="font-display text-[48px] leading-[.95] lg:text-[82px] tracking-[-0.06em] font-semibold mb-8">
+          Let’s build something <span className="text-secondary">remarkable.</span>
         </h1>
         <p className="font-body text-lg lg:text-xl text-on-surface-variant">
-          Whether you're launching a startup, modernizing your enterprise, or transforming a
-          government agency, Datafy Technology is ready to help you move forward with confidence.
-          Contact us today for a free consultation.
+          Tell us what you are building, changing, or trying to understand. Share enough context
+          for our team to suggest a practical next step.
         </p>
       </div>
     </section>
@@ -42,15 +41,20 @@ function ContactSection() {
     const email = String(form.get("email") ?? "").trim();
     const company = String(form.get("company") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
+    const website = String(form.get("website") ?? "").trim();
+    if (website) return;
     const subject = encodeURIComponent(`Project enquiry from ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company || "Not provided"}\n\nProject details:\n${message}`);
-    window.location.href = `mailto:hello@datafy.ng?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@datafy.ng?subject=${subject}&body=${body}`;
   };
 
   return (
     <section className="py-16 px-page max-w-container mx-auto reveal">
       <div className="grid lg:grid-cols-12 gap-16">
-        <form className="lg:col-span-7 space-y-6" onSubmit={handleSubmit}>
+        <form className="lg:col-span-7 space-y-6 bg-white border border-outline-variant/30 p-6 sm:p-10" onSubmit={handleSubmit}>
+          <div className="absolute -left-[9999px]" aria-hidden="true">
+            <label htmlFor="website">Website</label><input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+          </div>
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-2 block">
@@ -61,6 +65,9 @@ function ContactSection() {
                 name="name"
                 type="text"
                 required
+                minLength={2}
+                maxLength={100}
+                autoComplete="name"
                 className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors"
                 placeholder="Jane Doe"
               />
@@ -74,6 +81,8 @@ function ContactSection() {
                 name="email"
                 type="email"
                 required
+                maxLength={160}
+                autoComplete="email"
                 className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors"
                 placeholder="jane@company.com"
               />
@@ -87,6 +96,8 @@ function ContactSection() {
                 id="company"
                 name="company"
               type="text"
+              maxLength={120}
+              autoComplete="organization"
               className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors"
               placeholder="Your organization"
             />
@@ -99,6 +110,8 @@ function ContactSection() {
                 id="message"
                 name="message"
               required
+                minLength={20}
+                maxLength={4000}
                 rows={5}
                 defaultValue={initialMessage}
               className="w-full border-b-2 border-outline-variant bg-transparent py-3 font-body text-lg focus:border-primary focus:outline-none transition-colors resize-none"
@@ -107,24 +120,24 @@ function ContactSection() {
           </div>
           <button
             type="submit"
-            className="bg-primary text-on-primary px-10 py-4 rounded font-display text-lg hover:bg-secondary transition-colors"
+            className="button-primary"
           >
             Prepare consultation email
           </button>
           <p className="text-sm text-on-surface-variant">This opens a draft in your email app. Please review and send it there.</p>
         </form>
 
-        <div className="lg:col-span-5 space-y-10">
+        <div className="lg:col-span-5 space-y-10 lg:pt-8">
           <div>
             <h3 className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-4">
               Email
             </h3>
             <a
-              href="mailto:hello@datafy.ng"
+              href="mailto:info@datafy.ng"
               className="flex items-center gap-3 font-display text-2xl font-semibold hover:text-secondary transition-colors"
             >
               <Mail className="text-secondary" size={24} />
-              hello@datafy.ng
+              info@datafy.ng
             </a>
           </div>
 
