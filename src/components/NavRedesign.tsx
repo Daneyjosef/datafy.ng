@@ -60,7 +60,6 @@ export function NavRedesign() {
           <button type="button" className="nav-link" aria-expanded={productsOpen} onClick={() => { setProductsOpen((value) => !value); setSolutionsOpen(false); }}>Products <ChevronDown size={14} className={productsOpen ? "rotate-180" : ""} /></button>
           {productsOpen && <div className="nav-mega nav-products">{productLinks.map((product) => <a key={product.label} href={product.href} className="nav-product-link"><span><strong>{product.label}</strong><small>{product.detail}</small></span><ArrowRight size={15} /></a>)}</div>}
         </div>
-        <HashLink hash="#work" className="nav-link">Our Work</HashLink>
         <Link to="/about" className={navClass(pathname === "/about")}>About</Link>
         <Link to="/contact" className={navClass(pathname === "/contact")}>Contact</Link>
       </div>
@@ -69,7 +68,7 @@ export function NavRedesign() {
     <div id="mobile-menu" className={`mobile-menu xl:hidden ${mobileOpen ? "mobile-menu-open" : ""}`} aria-hidden={!mobileOpen}>
       <div className="px-page pt-5 pb-12 min-h-full flex flex-col">
         <div className="flex items-center justify-between"><img src="/datafy-logo.png" alt="Datafy Technology" className="mobile-menu-logo h-auto" /><button type="button" className="menu-button" onClick={() => setMobileOpen(false)} aria-label="Close menu"><X size={22} /></button></div>
-        <div className="mobile-links mt-14"><Link to="/">Home</Link><HashLink hash="#solutions">Solutions</HashLink><HashLink hash="#products">Products</HashLink><HashLink hash="#work">Our Work</HashLink><Link to="/about">About</Link><Link to="/contact">Contact</Link></div>
+        <div className="mobile-links mt-14"><Link to="/">Home</Link><HashLink hash="#solutions">Solutions</HashLink><HashLink hash="#products">Products</HashLink><Link to="/about">About</Link><Link to="/contact">Contact</Link></div>
         <div className="mt-12 pt-8 border-t border-white/12"><span className="eyebrow text-primary-fixed-dim">Products</span><div className="grid gap-3 mt-5">{productLinks.map((product) => <a key={product.label} href={product.href} className="flex justify-between items-center text-white/75"><span>{product.label}</span><small>{product.detail}</small></a>)}</div></div>
         <Link to="/contact" className="button-light mt-auto justify-center">Start a project <ArrowRight size={16} /></Link>
       </div>
