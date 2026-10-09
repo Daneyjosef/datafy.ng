@@ -260,3 +260,92 @@ main > .reveal:first-child {
 .pay-phone>small{font-size:.76rem;line-height:1.45;color:#6e6e73;min-height:2.2rem}.pay-service-slide{min-height:225px;border-radius:20px;background:linear-gradient(145deg,#285f31,#173d20);color:white;padding:1.25rem;display:flex;flex-direction:column;align-items:flex-start;animation:paySlideIn .75s cubic-bezier(.22,1,.36,1) both}.pay-service-icon{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);margin-bottom:auto}.pay-service-slide small{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-top:1.1rem}.pay-service-slide b{font-size:1.35rem;letter-spacing:-.035em;margin-top:.25rem}.pay-service-slide p{font-size:.78rem;line-height:1.4;color:rgba(255,255,255,.7);margin-top:.45rem}.pay-service-dots{display:flex;justify-content:center;gap:6px;margin-top:auto}.pay-service-dots i{width:6px!important;height:6px!important;flex:none;border-radius:50%!important;background:#d6ded4!important;transition:width .35s ease,background .35s ease}.pay-service-dots i.active{width:22px!important;background:#2d6837!important}.pay-phone-left>span,.pay-phone-right>span{font-weight:650}.pay-phone-left,.pay-phone-right{transition:transform .8s ease,opacity .8s ease}@keyframes paySlideIn{from{opacity:0;transform:translateX(35px) scale(.98)}to{opacity:1;transform:none}}
 @media(max-width:767px){.pay-service-slide{min-height:160px;padding:.85rem}.pay-service-icon{width:36px;height:36px}.pay-service-icon svg{width:19px}.pay-service-slide small{font-size:.52rem;margin-top:.65rem}.pay-service-slide b{font-size:1rem}.pay-service-slide p{font-size:.62rem}.pay-phone>small{font-size:.58rem}.pay-service-dots{margin-top:.25rem}}
 @media(prefers-reduced-motion:reduce){.pay-service-slide{animation:none}.pay-phone-left,.pay-phone-right{transition:none}}
+
+/* Mobile app experience */
+.mobile-tab-bar{
+  background:rgba(250,250,252,.92);
+  border-top:1px solid rgba(29,29,31,.1);
+  box-shadow:0 -8px 30px rgba(29,29,31,.08);
+  -webkit-backdrop-filter:saturate(180%) blur(22px);
+  backdrop-filter:saturate(180%) blur(22px);
+}
+.mobile-tab-inner{max-width:560px;margin-inline:auto}.mobile-tab-inner>a,.mobile-tab-inner>button{position:relative;min-width:0;font-size:.7rem;font-weight:600}.mobile-tab-inner svg{width:20px;height:20px;stroke-width:1.8}.mobile-tab-label{font-size:.61rem;line-height:1;letter-spacing:-.01em}.mobile-tab-inner .text-secondary::before{content:"";position:absolute;top:5px;width:30px;height:3px;border-radius:999px;background:#2d6837}.mobile-solution-sheet{border:1px solid rgba(29,29,31,.08)}.mobile-sheet-scrim{-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+
+@media(max-width:1199px){
+  .app-shell{padding-bottom:calc(4rem + env(safe-area-inset-bottom))}
+  .site-header nav{max-width:760px}
+  .nav-project-cta{display:inline-flex!important}
+  .site-footer{padding-bottom:1rem}
+}
+
+@media(max-width:767px){
+  html{scroll-padding-top:58px}
+  body{background:#eef1ed}
+  .site-header{height:58px;background:rgba(255,255,255,.9);border-bottom:1px solid rgba(29,29,31,.08);box-shadow:0 2px 18px rgba(29,29,31,.04)}
+  .site-header nav{height:58px!important;padding-inline:16px}
+  .logo-link img{width:58px}
+  .site-header .nav-project-cta{min-height:34px;padding:.42rem .78rem;font-size:.69rem}
+  .site-header .nav-project-cta svg{display:none}
+
+  .apple-home{padding-top:58px;background:#eef1ed}
+  .apple-home .apple-kicker{font-size:.78rem;letter-spacing:.02em;text-transform:uppercase;color:#397443}
+  .apple-copy{padding-inline:4px}
+  .apple-copy h1{font-size:clamp(2.75rem,13.4vw,3.7rem);line-height:.94;letter-spacing:-.06em}
+  .apple-copy h2,.apple-section-heading h2,.apple-about h2{font-size:clamp(2.35rem,11vw,3.15rem);line-height:.96}
+  .apple-subhead{max-width:330px;margin-top:.9rem;font-size:1rem;line-height:1.42;letter-spacing:-.02em}
+  .apple-links{width:100%;margin-top:1.25rem;gap:.65rem;align-items:stretch}
+  .apple-links a{min-height:44px;padding:.7rem 1rem;border-radius:999px;background:#edf4ec;font-size:.88rem;text-decoration:none!important;justify-content:center}
+  .apple-copy-light .apple-links a{background:rgba(121,189,120,.13)}
+
+  .apple-hero{min-height:620px;margin:0 10px 10px;padding:4.2rem 14px 0;border-radius:0 0 28px 28px;background:#fff}
+  .apple-hero-stage{height:285px;width:100%;margin-top:1.8rem}
+  .apple-globe{width:176px;box-shadow:0 24px 54px rgba(45,104,55,.22)}
+  .orbit-system{width:min(82vw,310px)}
+  .stage-label{font-size:.58rem}.label-one{left:-1%}.label-two{right:0}.label-three{right:4%;bottom:10%}
+
+  .apple-feature{min-height:0;margin:0 10px 10px;padding:3.75rem 16px 0;border-radius:28px}
+  .apple-feature-dark{min-height:720px;padding-top:4rem;background:#050605}
+  .pay-stage{height:360px;margin-top:1.8rem}
+  .pay-phone-left,.pay-phone-right{display:none}
+  .pay-phone-center{width:202px;height:365px;padding:1.25rem .85rem;border-width:6px;border-radius:30px 30px 0 0;transform:none;box-shadow:0 18px 55px rgba(0,0,0,.5)}
+  .pay-phone-center>strong{font-size:1.45rem}.pay-phone-center img{width:27px}
+  .pay-service-slide{min-height:174px;border-radius:16px;padding:.9rem}.pay-service-slide p{font-size:.68rem;line-height:1.35}
+
+  .apple-feature-data{min-height:650px;padding-top:3.75rem;background:linear-gradient(160deg,#f4faf2,#dcebd9)}
+  .data-map{height:315px;margin-top:2rem;border-radius:28px 28px 0 0}
+  .data-map-grid{background-size:38px 38px}.map-shape svg{width:112px;height:112px}
+  .map-card{padding:.58rem .66rem;border-radius:10px}.map-card span{font-size:.54rem}.map-card b{font-size:.64rem}.card-one{left:4%;top:13%}.card-two{right:3%;bottom:10%}
+  .signal-tag{display:none}
+
+  .apple-tiles{display:grid;grid-template-columns:1fr;gap:10px;margin:0;padding:0 10px 10px}
+  .apple-tile{min-height:570px;padding:3.6rem 16px 0;border-radius:28px}
+  .apple-tile .apple-copy h2{font-size:clamp(2.35rem,11vw,3.1rem)}
+  .hub-stage{inset:auto 14px 0;height:275px;border-radius:24px 24px 0 0}
+  .hub-window{margin:1.2rem;border-width:8px}.hub-worker{left:3%;transform:scale(.72);transform-origin:bottom left}.hub-desk{width:74%}.hub-monitor{left:70%;transform:translateX(-50%) scale(.86);transform-origin:bottom center}.hub-monitor-stand{left:70%!important}.hub-keyboard{left:65%}
+  .apple-tile-work{min-height:540px}.work-rings{bottom:-112px;width:390px}
+
+  .apple-solutions{margin:0 10px 10px;padding:4.5rem 18px;border-radius:28px;background:#fff;overflow:hidden}
+  .apple-section-heading{text-align:center}.apple-section-heading>p:last-child,.apple-about-inner>p{margin-top:1rem;font-size:1rem;line-height:1.5}
+  .capability-row{margin-inline:-18px;padding:2rem 18px .3rem;gap:.75rem;scroll-padding-left:18px}
+  .capability-pill{min-width:78vw;height:190px;padding:1.25rem;border-radius:22px;background:#f1f3f0}
+  .capability-pill span{font-size:1.2rem}.capability-pill:hover{transform:none;box-shadow:none}
+
+  .apple-about{margin:0 10px 10px;padding:4.5rem 18px;border-radius:28px;background:#fff}
+  .apple-about .apple-links{display:grid}.apple-about .apple-links a{width:100%}
+
+  .app-shell>main>section{padding-top:4.5rem!important;padding-bottom:4.5rem!important}
+  .app-shell>main>section:first-child{padding-top:7.25rem!important}
+
+  .site-footer{margin-top:0;border-top:0;background:#eef1ed}
+  .site-footer>.max-w-container{padding:3.5rem 20px 2rem}
+  .footer-top{display:grid;grid-template-columns:1fr;gap:2.5rem}
+  .footer-top>div:first-child{grid-column:auto;max-width:none}.footer-top>div:nth-child(2),.footer-top>div:nth-child(3){display:none}.footer-top>div:last-child{grid-column:auto}
+  .footer-top>div:last-child ul{display:grid;grid-template-columns:1fr 1fr;gap:.15rem 1rem}
+  .footer-top>div:last-child li a{display:block;min-height:40px;padding:.55rem 0}
+  .footer-locations{display:flex;overflow-x:auto;flex-wrap:nowrap;padding-block:1.25rem;scrollbar-width:none}.footer-locations::-webkit-scrollbar{display:none}.footer-locations>span{flex:0 0 auto}
+  .footer-bottom{gap:.45rem;padding-top:1.3rem;font-size:.72rem}
+}
+
+@media(max-width:380px){
+  .site-header .nav-project-cta{padding-inline:.65rem}.apple-hero{padding-inline:10px}.apple-copy h1{font-size:2.72rem}.apple-links{display:grid}.apple-links a{width:100%}.mobile-tab-label{font-size:.57rem}
+}

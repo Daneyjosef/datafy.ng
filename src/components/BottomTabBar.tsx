@@ -38,7 +38,7 @@ export function BottomTabBar() {
     <>
       {sheetOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-40 bg-black/50"
+          className="xl:hidden fixed inset-0 z-40 bg-black/50 mobile-sheet-scrim"
           onClick={() => setSheetOpen(false)}
           aria-hidden="true"
         />
@@ -47,7 +47,7 @@ export function BottomTabBar() {
       <div
         id="mobile-solutions"
         inert={!sheetOpen}
-        className={`lg:hidden fixed inset-x-0 bottom-0 z-50 bg-surface-container-lowest rounded-t-2xl shadow-2xl transition-transform duration-300 ease-out ${
+        className={`xl:hidden fixed inset-x-0 bottom-0 z-50 bg-surface-container-lowest rounded-t-2xl shadow-2xl transition-transform duration-300 ease-out mobile-solution-sheet ${
           sheetOpen ? "translate-y-0" : "translate-y-full"
         }`}
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 5rem)" }}
@@ -87,10 +87,10 @@ export function BottomTabBar() {
       </div>
 
       <nav
-        className="lg:hidden fixed inset-x-0 bottom-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-outline-variant/20"
+        className="xl:hidden fixed inset-x-0 bottom-0 z-50 mobile-tab-bar"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
-        <div className="grid grid-cols-5 h-16">
+        <div className="grid grid-cols-5 h-16 mobile-tab-inner">
           <Link
             to={TABS[0].to}
             className={`flex flex-col items-center justify-center gap-1 touch-manipulation ${
@@ -98,12 +98,12 @@ export function BottomTabBar() {
             }`}
           >
             <Home size={22} />
-            <span className="font-label text-[10px]">{TABS[0].label}</span>
+            <span className="mobile-tab-label">{TABS[0].label}</span>
           </Link>
 
           <a href="https://pay.datafy.ng/" className="flex flex-col items-center justify-center gap-1 touch-manipulation text-on-surface-variant">
             <Wallet size={22} />
-            <span className="font-label text-[10px]">Pay</span>
+            <span className="mobile-tab-label">Pay</span>
           </a>
 
           <button
@@ -115,7 +115,7 @@ export function BottomTabBar() {
             }`}
           >
             <Grip size={22} />
-            <span className="font-label text-[10px]">Solutions</span>
+            <span className="mobile-tab-label">Solutions</span>
           </button>
 
           {TABS.slice(1).map((tab) => {
@@ -130,7 +130,7 @@ export function BottomTabBar() {
                 }`}
               >
                 <Icon size={22} />
-                <span className="font-label text-[10px]">{tab.label}</span>
+                <span className="mobile-tab-label">{tab.label}</span>
               </Link>
             );
           })}

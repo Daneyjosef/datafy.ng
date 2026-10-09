@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { NavRedesign } from "./components/NavRedesign";
 import { FooterRedesign } from "./components/FooterRedesign";
+import { BottomTabBar } from "./components/BottomTabBar";
 import { Seo } from "./components/Seo";
 import { HomeApple } from "./pages/HomeApple";
 import { AiSolutions } from "./pages/AiSolutions";
@@ -28,7 +29,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <div className="min-h-screen bg-surface text-on-surface font-body">
+    <div className="app-shell min-h-screen bg-surface text-on-surface font-body">
       <ScrollToTop />
       <Seo />
       <NavRedesign />
@@ -56,6 +57,7 @@ function App() {
         </Routes>
       </main>
       <FooterRedesign />
+      <BottomTabBar />
     </div>
   );
 }
